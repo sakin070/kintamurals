@@ -24,7 +24,10 @@
             <div class = "form">
                 <form #eventForm="ngForm" (ngSubmit)="addNewCompany(eventForm.form);">
                     <input [(ngModel)]="eventForm.name" type = "text" class = "form-control" placeholder="Event Name" name = "eventName">
-                    <input [(ngModel)]="eventForm.data" type ="date" class = "form-control" name="date" placeholder="MM/DD/YYYY" ngbDatepicker #d="ngbDatepicker">
+                    <input [(ngModel)]="eventForm.data" type ="date" class = "form-control" name="date" placeholder="MM/DD/YYYY">
+                    <input [(ngModel)]="eventForm.Category" type="text" class = "form-control" name = "Category" placeholder="Select a Category">
+                    <input [(ngModel)]="eventForm.startTime" type="text" class = "form-control" name = "sTime" placeholder="Start time of event">
+                    <input [(ngModel)]="eventForm.endTime" type="text" class = "form-control" name = "eTime" placeholder="End time of event">
                     <button class = "btn btn-primary">Submit</button>
                 </form>
             </div>

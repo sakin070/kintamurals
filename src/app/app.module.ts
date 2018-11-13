@@ -29,7 +29,6 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     CalenderComponent,
-    AddEventFormModelComponent
   ],
   imports: [
     BrowserModule,

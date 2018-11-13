@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, NgTi } from '@angular/core';
 import { extend } from '@syncfusion/ej2-base';
 import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthService,
   AgendaService, ResizeService, DragAndDropService } from '@syncfusion/ej2-angular-schedule';
@@ -6,8 +6,8 @@ import { scheduleData } from '../datasource';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
-import { AddEventFormModelComponent } from '../add-event-form-model/add-event-form-model.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
 
 
 @Component({
@@ -36,7 +36,7 @@ export class CalenderComponent implements OnInit {
   ngOnInit() {
   }
 
-  addNewCompany(form){
+  addNewEvent(form){
     console.log(form.value);
     console.log(scheduleData[scheduleData.length-1]);
   }
