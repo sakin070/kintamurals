@@ -1,26 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddEventFormModelComponent } from './add-event-form-model/add-event-form-model.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    NgbModule.forRoot()
+  ],
+  bootstrap: [AppComponent]
+})
+
 export class AppComponent {
-  title = 'app';
-
-  constructor(
-    private modalService: NgbModal
-  ) { }
-
-  openFormModal() {
-    const modalRef = this.modalService.open(AddEventFormModelComponent);
-    
-    modalRef.result.then((result) => {
-      console.log(result);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
 }

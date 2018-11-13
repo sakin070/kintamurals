@@ -20,12 +20,8 @@ import { AddEventFormModelComponent } from '../add-event-form-model/add-event-fo
   imports: [
     NgbModule.forRoot()
   ],
-  bootstrap: [AppComponent],
-  entryComponents:[
-    AddEventFormModelComponent
-  ]
+  bootstrap: [AppComponent]
 })
-
 
 export class CalenderComponent implements OnInit {
   public selectedDate: Date = new Date(2018, 1, 15);
