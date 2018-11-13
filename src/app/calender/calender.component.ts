@@ -5,9 +5,11 @@ import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthServ
 import { scheduleData } from '../datasource';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes} from '@angular/router';
 import { AppComponent } from '../app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -53,10 +55,12 @@ export class CalenderComponent implements OnInit {
       StartTime: startTime,
       EndTime: endTime
     };
-    console.log(form.value.sTime.split(":"));
     console.log(scheduleData[scheduleData.length-1]);
     scheduleData.push(event);
     console.log(scheduleData[scheduleData.length-1]);
+
+
+
   }
 
 
