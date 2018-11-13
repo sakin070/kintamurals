@@ -1,23 +1,55 @@
 <div class="control-section">
   <div class="col-lg-9 content-wrapper">
-    <ejs-schedule #schedule height='650px' [(selectedDate)]="selectedDate" [eventSettings]="eventSettings">
+    <ejs-schedule #schedule height='900px' [(selectedDate)]="selectedDate" [eventSettings]="eventSettings" (eventRendered)="oneventRendered($event)">
+      <e-views>
+           <e-view option="Week"></e-view>
+           <e-view option="Month"></e-view>
+       </e-views>
     </ejs-schedule>
   </div>
   <div class="col-lg-3 property-section">
-    <div class="property-panel-section">
-      <div class="property-panel-header">Properties</div>
-      <div class="property-panel-content">
-        <div id="property" class="property-panel-table" title="Properties">
-          <table id="property" title="Properties" style="width: 100%">
+    <div class="filter-panel-section">
+      <div class="filter-panel-header">Filters</div>
+      <div class="filter-panel-content">
+        <form id="filters" action="" >
+          <table id="property-table" title="Properties">
+            <colgroup style="height: 70pm" margin="10px">
+              <col class ="tags" style="width: 50%">
+              <col id="values">
+            </colgroup>
             <tbody>
-            <tr style="height: 50px">
-              <td style="width: 30%">
-                <div> Current Date
+            <tr id="date">
+              <td>Current Date</td>
+              <td>
+                <div><ejs-datepicker #datepicker [(value)]='selectedDate' width="200px" ></ejs-datepicker></div>
+              </td>
+            </tr>
+            <tr id="event-name">
+              <td>Event Name</td>
+              <td>
+                <div>
+                  <input type="text" id="event-input" value="">
                 </div>
               </td>
-              <td style="width: 70%;">
+            </tr>
+            <tr id="type">
+              <td>Type</td>
+              <td>
+                <select name="event-type" form="event-type-form">
+                  <option value="">Select Type</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Recreational">Recreational</option>
+                  <option value="Mental Wellness">Mental Wellness</option>
+                  <option value="Board Games">Board Games</option>
+                  <option value="Fitness">Fitness</option>
+                </select>
+              </td>
+            </tr>
+            <tr id="participants">
+              <td>Participants</td>
+              <td>
                 <div>
-                  <ejs-datepicker #datepicker [(value)]='selectedDate'></ejs-datepicker>
+                  <input type="text" id="event-input" value="">
                 </div>
               </td>
             </tr>
@@ -44,7 +76,8 @@
             </div>-->
           </tbody>
           </table>
-        </div>
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     </div>
   </div>
