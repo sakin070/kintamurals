@@ -5,6 +5,8 @@ import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthServ
 import { scheduleData } from '../datasource';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from '../app.component';
+import { AddEventFormModelComponent } from '../add-event-form-model/add-event-form-model.component';
+
 
 @Component({
   selector: 'app-calender',
@@ -20,7 +22,7 @@ import { AppComponent } from '../app.component';
   ],
   bootstrap: [AppComponent],
   entryComponents:[
-    
+    AddEventFormModelComponent
   ]
 })
 
@@ -34,8 +36,9 @@ export class CalenderComponent implements OnInit {
   ngOnInit() {
   }
 
-  addAnEventDialog(){
-
+  openFormModal(){
+    console.log('hi');
   }
+
 
 }

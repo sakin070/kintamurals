@@ -1,3 +1,20 @@
-<p>
-  add-event-form-model works!
-</p>
+<div class="modal-header">
+  <h4 class="modal-title">Modal Title</h4>
+  <button type="button" class="close" aria-label="Close"
+   (click)="activeModal.dismiss('Cross click')">
+  </button>
+</div>
+<div class="modal-body">
+  <p>My modal content</p>
+</div>
+
+<button (click)="openFormModal()" style="width: 100%">
+  <div> Add an Event
+  </div>
+</button>  
+
+<div class="modal-footer">
+  <button (click)="activeModal.dismiss('Close clicked')">
+    Close Clicked
+  </button>
+</div>
