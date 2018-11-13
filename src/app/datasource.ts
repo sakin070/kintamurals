@@ -8,13 +8,16 @@ export let scheduleData: Object[] = [
         Subject: 'Explosion of Betelgeuse Star',
         StartTime: new Date(2018, 1, 11, 9, 30),
         EndTime: new Date(2018, 1, 11, 11, 0),
-        CategoryColor: '#1aaa55'
+        Location: 'House',
+        CategoryColor: '#1aaa55',
+        Description: 'Category: Basketball <br/> Participants: Saheed, vee'
     }, {
         Id: 2,
         Subject: 'Thule Air Crash Report',
         StartTime: new Date(2018, 1, 12, 12, 0),
         EndTime: new Date(2018, 1, 12, 14, 0),
-        CategoryColor: '#357cd2'
+        CategoryColor: '#357cd2',
+    Description: 'Category: Basketball <br/> Participants: Saheed, vee'
     }, {
         Id: 3,
         Subject: 'Blue Moon Eclipse',
@@ -39,6 +42,8 @@ export let scheduleData: Object[] = [
         StartTime: new Date(2018, 1, 15, 9, 30),
         EndTime: new Date(2018, 1, 15, 11, 0),
         CategoryColor: '#f57f17'
+    ,
+    Description: 'Category: Basketball <br/> Participants: Saheed, vee'
     }, {
         Id: 7,
         Subject: 'Glaciers and Snowflakes',
@@ -156,13 +161,15 @@ export let timelineData: Object[] = [
         Subject: 'Sky Gazers',
         StartTime: new Date(2018, 1, 15, 10, 30),
         EndTime: new Date(2018, 1, 15, 12, 0),
-        CategoryColor: '#1aaa55'
+        CategoryColor: '#1aaa55',
+        Details: 'blaaaaaa'
     }, {
         Id: 26,
         Subject: 'The Cycle of Seasons',
         StartTime: new Date(2018, 1, 15, 11, 0),
         EndTime: new Date(2018, 1, 15, 12, 30),
-        CategoryColor: '#7fa900'
+        CategoryColor: '#7fa900',
+        Details: 'blaaaaaa'
     }, {
         Id: 27,
         Subject: 'Facts of Humming Birds',
