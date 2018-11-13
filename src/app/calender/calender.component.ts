@@ -33,7 +33,8 @@ export class CalenderComponent implements OnInit {
   }
 
   openFormModal(){
-    console.log('hi');
+    scheduleData.push("hi")
+    console.log(scheduleData[scheduleData.length-1]);
   }
 
 
