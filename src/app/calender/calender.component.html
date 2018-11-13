@@ -5,19 +5,47 @@
   </div>
   <div class="col-lg-3 property-section">
     <div class="property-panel-section">
-      <div class="property-panel-header">Properties</div>
+      <p></p>
+      <div class="property-panel-header" style = "color:black;font-family:verdana;font-size:15px" align="center"><b>Admins</b></div>
       <div class="property-panel-content">
-        <div id="property" class="property-panel-table" title="Properties">
-          <table id="property" title="Properties" style="width: 100%">
+        <div id="property" class="property-panel-table" title="Admins">
+          <table id="property" title="Admins" style="width: 100%">
+            <tbody>
+            <tr style="height: 50px">
+              <td>
+                <div>
+                  
+                </div>
+                <div align ="center">**Maximum 3 admins allowed**</div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p></p>
+      <div class="property-panel-header" style = "color:black;font-family:verdana;font-size:15px" align="center"><b>Participants</b></div>
+      <div class="property-panel-content">
+        <div id="property" class="property-panel-table" title="Participants">
+          <table id="property" title="Participants" style="width: 100%">
             <tbody>
             <tr style="height: 50px">
               <td style="width: 30%">
-                <div> Current Date
-                </div>
+                <div style = "color:black;font-family:verdana;font-size:13px" align="center"> ADD </div>
               </td>
               <td style="width: 70%;">
                 <div>
-                  <ejs-datepicker #datepicker [(value)]='selectedDate'></ejs-datepicker>
+                  <ejs-multiselect></ejs-multiselect>
+                </div>
+              </td>
+            </tr>
+            <tr style="height: 50px">
+              <td style="width: 30%">
+                <div style = "color:black;font-family:verdana;font-size:13px" align="center"> Participants </div>
+              </td>
+              <td style="width: 70%;">
+                <div>
+                  <ejs-listview></ejs-listview>
                 </div>
               </td>
             </tr>
