@@ -4,8 +4,10 @@ import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthServ
   AgendaService, ResizeService, DragAndDropService } from '@syncfusion/ej2-angular-schedule';
 import { scheduleData } from '../datasource';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { AddEventFormModelComponent } from '../add-event-form-model/add-event-form-model.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @Component({
@@ -18,7 +20,9 @@ import { AddEventFormModelComponent } from '../add-event-form-model/add-event-fo
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    BrowserModule,
+    FormsModule
   ],
   bootstrap: [AppComponent]
 })
@@ -32,8 +36,8 @@ export class CalenderComponent implements OnInit {
   ngOnInit() {
   }
 
-  openFormModal(){
-    scheduleData.push("hi")
+  addNewCompany(form){
+    console.log(form.value);
     console.log(scheduleData[scheduleData.length-1]);
   }
 
