@@ -37,7 +37,25 @@ export class CalenderComponent implements OnInit {
   }
 
   addNewEvent(form){
-    console.log(form.value);
+    var startTime = new Date(form.value.date);
+    var sTime = form.value.sTime.split(":");
+    startTime.setHours(sTime[0]);
+    startTime.setMinutes(sTime[1]);
+
+    var endTime = new Date(form.value.date);
+    var eTime = form.value.eTime.split(":");
+    endTime.setHours(eTime[0]);
+    endTime.setMinutes(eTime[1]);
+
+    var event = {
+      Id: scheduleData[scheduleData.length-1]['Id']+1,
+      Subject: form.value.eventName,
+      StartTime: startTime,
+      EndTime: endTime
+    };
+    console.log(form.value.sTime.split(":"));
+    console.log(scheduleData[scheduleData.length-1]);
+    scheduleData.push(event);
     console.log(scheduleData[scheduleData.length-1]);
   }
 
