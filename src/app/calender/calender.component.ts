@@ -18,7 +18,10 @@ import { AppComponent } from '../app.component';
   imports: [
     NgbModule.forRoot()
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[
+    
+  ]
 })
 
 

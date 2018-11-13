@@ -22,11 +22,13 @@ import { ToolbarAllModule } from '@syncfusion/ej2-angular-navigations';
 import { MaskedTextBoxModule } from '@syncfusion/ej2-angular-inputs';
 import { DropDownListAllModule, MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
 import { SharedModule } from './shared.module';
+import { AddEventFormModelComponent } from './add-event-form-model/add-event-form-model.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalenderComponent
+    CalenderComponent,
+    AddEventFormModelComponent
   ],
   imports: [
     BrowserModule,
