@@ -53,7 +53,8 @@
                 </div>
               </td>
             </tr>
-            <div class = "form">
+            <div class = "divForm">
+              <h3>Add a new event</h3>
                 <form #eventForm="ngForm" (ngSubmit)="addNewEvent(eventForm.form);">
                     <input [(ngModel)]="eventForm.name" type = "text" class = "form-control" placeholder="Event Name" name = "eventName">
                     <input [(ngModel)]="eventForm.data" type ="date" class = "form-control" name="date" placeholder="MM/DD/YYYY">
