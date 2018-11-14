@@ -7,7 +7,6 @@ import {
 } from '@syncfusion/ej2-angular-schedule';
 
 import { scheduleData } from '../datasource';
-
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
@@ -21,6 +20,8 @@ export class CalenderComponent implements OnInit {
   public selectedDate: Date = new Date(2018, 1, 15);
   public eventSettings: EventSettingsModel = { dataSource: this.data };
   public currentView: View = 'Week';
+  filter = 'Basketball';
+  currentFilter = '';
 
   oneventRendered(args: EventRenderedArgs): void {
     const categoryColor: string = args.data.CategoryColor as string;
@@ -37,6 +38,23 @@ export class CalenderComponent implements OnInit {
         args.element.style.backgroundColor = '#1aaa55';
       }
     }
+    this.filteredData();
+  }
+
+  filteredData() {
+    if (this.currentFilter !== this.filter) {
+      const newData: Object[] = <Object[]> [];
+      for (let i = 0; i < this.data.length ; i++) {
+        // @ts-ignore
+        const currentData = this.data[i].Description;
+        if (currentData.includes(this.filter)) {
+          newData.push(this.data[i]);
+        }
+      }
+      this.eventSettings = { dataSource: newData };
+      this.currentFilter = this.filter;
+    }
+
   }
 
 

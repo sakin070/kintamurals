@@ -26,7 +26,7 @@ import { SharedModule } from './shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-    CalenderComponent
+    CalenderComponent,
   ],
   imports: [
     BrowserModule,
