@@ -53,7 +53,29 @@
                 </div>
               </td>
             </tr>
-            </tbody>
+            <div class = "divForm">
+              <h3>Add a new event</h3>
+                <form #eventForm="ngForm" (ngSubmit)="addNewEvent(eventForm.form);">
+                    <input [(ngModel)]="eventForm.name" type = "text" class = "form-control" placeholder="Event Name" name = "eventName">
+                    <input [(ngModel)]="eventForm.data" type ="date" class = "form-control" name="date" placeholder="MM/DD/YYYY">
+                    <input [(ngModel)]="eventForm.Category" type="text" class = "form-control" name = "Category" placeholder="Select a Category">
+                    <input [(ngModel)]="eventForm.startTime" type="text" class = "form-control" name = "sTime" placeholder="Start time of event (24h clock)">
+                    <input [(ngModel)]="eventForm.endTime" type="text" class = "form-control" name = "eTime" placeholder="End time of event (24h clock)">
+                    <button class = "btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <!--<div class = "addEventForm">
+              <div class="form-group" #newEvent>
+                <label for="eventNameInput">Event name</label>
+                <input type="event" class="form-control" id="eventNameInput" placeholder="Event name">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <button (click) = "openFormModal()" type="submit" class="btn btn-default">Submit</button>
+            </div>-->
+          </tbody>
           </table>
           <input type="submit" value="Submit" />
         </form>
