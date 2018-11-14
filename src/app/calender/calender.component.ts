@@ -34,7 +34,7 @@ export class CalenderComponent implements OnInit {
     } else {
 
       args.element.style.backgroundColor = categoryColor;
-      if (category.includes('Basketball')) {
+      if (category.includes(this.filter)) {
         args.element.style.backgroundColor = '#1aaa55';
       }
     }
