@@ -1,10 +1,7 @@
-import { Component, OnInit, NgModule, NgTi } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { extend } from '@syncfusion/ej2-base';
-
-import {
-  EventSettingsModel, DayService, WeekService, WorkWeekService, MonthService,
-  AgendaService, View, ResizeService, DragAndDropService, EventRenderedArgs
-} from '@syncfusion/ej2-angular-schedule';
+import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthService,
+  AgendaService, View, ResizeService, DragAndDropService, EventRenderedArgs } from '@syncfusion/ej2-angular-schedule';
 
 import { scheduleData } from '../datasource';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -34,8 +31,6 @@ import { Router } from '@angular/router';
 })
 
 export class CalenderComponent implements OnInit {
-
-
   public data: Object[] = <Object[]>extend([], scheduleData, null, true);
   public selectedDate: Date = new Date(2018, 1, 15);
   public eventSettings: EventSettingsModel = { dataSource: this.data };
@@ -64,7 +59,7 @@ export class CalenderComponent implements OnInit {
   ngOnInit() {
   }
 
-  addNewEvent(form){
+  addNewEvent(form):void {
     var startTime = new Date(form.value.date);
     var sTime = form.value.sTime.split(":");
     startTime.setHours(sTime[0]);
