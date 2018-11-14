@@ -52,24 +52,24 @@ export class CalenderComponent implements OnInit {
         args.element.style.backgroundColor = '#1aaa55';
       }
     }
-   // this.filteredData();
+    this.filteredData();
   }
 
-  // filteredData() {
-  //   if (this.currentFilter !== this.filter) {
-  //     const newData: Object[] = <Object[]> [];
-  //     for (let i = 0; i < this.data.length ; i++) {
-  //       // @ts-ignore
-  //       const currentData = this.data[i].Description;
-  //       if (currentData.includes(this.filter)) {
-  //         newData.push(this.data[i]);
-  //       }
-  //     }
-  //     this.eventSettings = { dataSource: newData };
-  //     this.currentFilter = this.filter;
-  //   }
+  filteredData() {
+    if (this.currentFilter !== this.filter) {
+      const newData: Object[] = <Object[]> [];
+      for (let i = 0; i < this.data.length ; i++) {
+        // @ts-ignore
+        const currentData = this.data[i].Description;
+        if (currentData.includes(this.filter)) {
+          newData.push(this.data[i]);
+        }
+      }
+      this.eventSettings = { dataSource: newData };
+      this.currentFilter = this.filter;
+    }
 
-  // }
+  }
 
 
   constructor() { }
