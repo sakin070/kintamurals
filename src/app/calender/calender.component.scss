@@ -40,3 +40,15 @@ input[type=submit]{
 .divForm>h3{
   font: bolder;
 }
+
+#eventRow{
+  padding-top: 50px;
+}
+
+#filterRow{
+  padding-top: 20px;
+}
+
+#eventRow > #eventNameInput{
+  width:100%;
+}
