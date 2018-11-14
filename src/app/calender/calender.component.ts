@@ -2,6 +2,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { extend } from '@syncfusion/ej2-base';
 import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthService,
   AgendaService, View, ResizeService, DragAndDropService, EventRenderedArgs } from '@syncfusion/ej2-angular-schedule';
+
 import { scheduleData } from '../datasource';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
@@ -30,7 +31,6 @@ import { Router } from '@angular/router';
 })
 
 export class CalenderComponent implements OnInit {
-
   public data: Object[] = <Object[]>extend([], scheduleData, null, true);
   public selectedDate: Date = new Date(2018, 1, 15);
   public eventSettings: EventSettingsModel = { dataSource: this.data };
