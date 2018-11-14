@@ -79,14 +79,18 @@ export class CalenderComponent implements OnInit {
 
   addNewEvent(form):void {
     var startTime = new Date(form.value.date);
-    var sTime = form.value.sTime.split(":");
-    startTime.setHours(sTime[0]);
-    startTime.setMinutes(sTime[1]);
+    if(form.value.sTime!=null){
+      var sTime = form.value.sTime.split(":");
+      startTime.setHours(sTime[0]);
+      startTime.setMinutes(sTime[1]);
+    }
 
     var endTime = new Date(form.value.date);
-    var eTime = form.value.eTime.split(":");
-    endTime.setHours(eTime[0]);
-    endTime.setMinutes(eTime[1]);
+    if(form.value.eTime!=null){
+      var eTime = form.value.eTime.split(":");
+      endTime.setHours(eTime[0]);
+      endTime.setMinutes(eTime[1]);
+    }
 
     var event = {
       Id: scheduleData[scheduleData.length-1]['Id']+1,

@@ -11,7 +11,6 @@
 <div class="col-lg-3 property-section">
   <div class="row" id="filterRow">
     <div class="col-md">
-      <h3>Filter Events</h3>
       <!--<form id="filters" action="">
         <table id="property-table" title="Properties">
           <colgroup style="height: 70pm" margin="10px">
@@ -61,23 +60,24 @@
         </table>
         <button class="btn btn-primary">Submit</button>
       </form> -->
+      <h3 class="display-4">Filter Events</h3>
       <form #filterForm="ngForm" (ngSubmit)="filteredData(filterForm.form);">
-          <input [(ngModel)]="filterForm.date" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY">
-          <input [(ngModel)]="filterForm.Category" [ngStyle] = "{'width':'100%'}" type="text" class="form-control" name="Category" placeholder="Select a Category">
-          <button class="btn btn-primary">Submit</button>
+          <input [(ngModel)]="filterForm.date" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}">
+          <input [(ngModel)]="filterForm.Category" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}" type="text" class="form-control" name="Category" placeholder="Select a Category">
+          <button class="btn btn-outline-primary waves-effect btn-lg" >Submit</button>
         </form>
     </div>
   </div>
   <div class="row" id="eventRow">
     <div class="col-md">
-        <h3>Add a new event</h3>
+        <h3 class="display-4">Add a new event</h3>
         <form #eventForm="ngForm" (ngSubmit)="addNewEvent(eventForm.form);">
-          <input [(ngModel)]="eventForm.name" [ngStyle] = "{'width':'100%'}" type="text" class="form-control" placeholder="Event Name" name="eventName" id="eventNameInput">
-          <input [(ngModel)]="eventForm.data" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY" id="eventDateInput">
-          <input [(ngModel)]="eventForm.Category" [ngStyle] = "{'width':'100%'}" type="text" class="form-control" name="Category" placeholder="Select a Category" id="eventCategoryInput">
-          <input [(ngModel)]="eventForm.startTime" [ngStyle] = "{'width':'100%'}" type="text" class="form-control" name="sTime" placeholder="Start time of event (24h clock)" id="eventSTimeInput">
-          <input [(ngModel)]="eventForm.endTime" [ngStyle] = "{'width':'100%'}" type="text" class="form-control" name="eTime" placeholder="End time of event (24h clock)" id="eventETimeInput">
-          <button class="btn btn-primary">Submit</button>
+          <input [(ngModel)]="eventForm.name" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}" type="text" class="form-control" placeholder="Event Name" name="eventName" id="eventNameInput">
+          <input [(ngModel)]="eventForm.data" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY" id="eventDateInput" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}">
+          <input [(ngModel)]="eventForm.Category" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}" type="text" class="form-control" name="Category" placeholder="Select a Category" id="eventCategoryInput">
+          <input [(ngModel)]="eventForm.startTime" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}" type="text" class="form-control" name="sTime" placeholder="Start time of event (24h clock)" id="eventSTimeInput">
+          <input [(ngModel)]="eventForm.endTime" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}" type="text" class="form-control" name="eTime" placeholder="End time of event (24h clock)" id="eventETimeInput">
+          <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
         </form>
       
     </div>
