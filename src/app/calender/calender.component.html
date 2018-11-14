@@ -1,52 +1,53 @@
 <div class="control-section">
   <div class="col-lg-9 content-wrapper">
-    <ejs-schedule #schedule height='650px' [(selectedDate)]="selectedDate" [eventSettings]="eventSettings">
+    <ejs-schedule #schedule height='900px' [(selectedDate)]="selectedDate" [eventSettings]="eventSettings">
+      <e-views>
+           <e-view option="Week"></e-view>
+           <e-view option="Month"></e-view>
+       </e-views>
     </ejs-schedule>
   </div>
-  <div class="col-lg-3 property-section">
-    <div class="property-panel-section">
+  <div class="col-lg-3 people-section">
+    <div class="people-panel-section">
       <p></p>
-      <div class="property-panel-header" style = "color:black;font-family:verdana;font-size:15px" align="center"><b>Admins</b></div>
-      <div class="property-panel-content">
-        <div id="property" class="property-panel-table" title="Admins">
-          <table id="property" title="Admins" style="width: 100%">
-            <tbody>
-            <tr style="height: 50px">
-              <td>
-                <div>
-                  
-                </div>
-                <div align ="center">**Maximum 3 admins allowed**</div>
-              </td>
-            </tr>
+      <div class="admin-panel-header">Admins</div>
+      <div class="admin-panel-content">
+        <div id="admin" class="admin-panel-table" title="Admins">
+          <table id="admin" title="Admins" style="width: 100%" >
+            <tbody >
+            <tr><td><input type="text" id="admin1"></td></tr>
+            <tr><td><input type="text" id="admin2"></td></tr>
+            <tr><td><input type="text" id="admin3"></td></tr>
             </tbody>
           </table>
         </div>
       </div>
-      <p></p>
-      <div class="property-panel-header" style = "color:black;font-family:verdana;font-size:15px" align="center"><b>Participants</b></div>
-      <div class="property-panel-content">
-        <div id="property" class="property-panel-table" title="Participants">
-          <table id="property" title="Participants" style="width: 100%">
+    </div>
+    <p></p>
+    <div class="participant-panel-section">
+      <div class="participant-panel-header">Participants</div>
+      <div class="participant-panel-content">
+        <div id="participant" class="participant-panel-table" title="Participants">
+          <table id="participant" title="Participants" style="width: 100%">
             <tbody>
             <tr style="height: 50px">
-              <td style="width: 30%">
-                <div style = "color:black;font-family:verdana;font-size:13px" align="center"> ADD </div>
-              </td>
-              <td style="width: 70%;">
-                <div>
-                  <ejs-multiselect></ejs-multiselect>
-                </div>
-              </td>
+              <td>ADD</td>
+              <td><div>
+                  <select name="event-type" form="name-type-form" id = "list">
+                    <option value="">Select Type</option>
+                    <option value="hbaig@kinaxis.com">Hasan Baig</option>
+                    <option value="hbaig@kinaxis.com">Hasan Baig</option>
+                    <option value="hbaig@kinaxis.com">Hasan Baig</option>
+                    <option value="hbaig@kinaxis.com">Hasan Baig</option>
+                    <option value="hbaig@kinaxis.com">Hasan Baig</option>
+                  </select>
+              </div></td>
+              <td style="width: 20%" align="left"><button id="normalbtn">Submit</button></td>
             </tr>
             <tr style="height: 50px">
-              <td style="width: 30%">
-                <div style = "color:black;font-family:verdana;font-size:13px" align="center"> Participants </div>
-              </td>
+              <td style="width: 30%"><div> Names </div></td>
               <td style="width: 70%;">
-                <div>
-                  <ejs-listview></ejs-listview>
-                </div>
+                <div><ejs-listview></ejs-listview></div>
               </td>
             </tr>
             </tbody>
