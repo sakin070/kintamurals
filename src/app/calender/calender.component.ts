@@ -38,7 +38,7 @@ export class CalenderComponent implements OnInit {
   filter = 'Basketball';
   currentFilter = '';
   public categoryList=[];
-  public categories = [{name:'All'}
+  public categories = [{name:'All'},
    {name: 'Basketball', typeList:['Basketball', 'Soccer', 'Chess']},
    {name: 'Soccer', typeList: ['PingPong']},
    {name: 'Damn', typeList: ['AA']},
@@ -46,8 +46,6 @@ export class CalenderComponent implements OnInit {
    {name: 'Kintramurals', typeList: ["Yoga", "Cardio"]},
   ];
   oneventRendered(args: EventRenderedArgs): void {
-    console.log(scheduleData.length);
-    console.log(this.eventSettings.dataSource);
     const categoryColor: string = args.data.CategoryColor as string;
     const category: string = args.data.Description as string;
     if (!args.element || !categoryColor) {
@@ -94,8 +92,7 @@ export class CalenderComponent implements OnInit {
   }
 
   compareCategory(category, dcategory):boolean{
-    console.log(category);
-    if(dcategory.includes(category) || category == 'All'){
+      if(dcategory.includes(category) || category == 'All'){
       return true;
     }
     return false;
@@ -113,18 +110,15 @@ export class CalenderComponent implements OnInit {
     var date = form.value.dateFilter;
     var category = form.value.filterEventType;
     var participant = form.value.participantsFilter;
-    console.log(participant);
     var filterDate = new Date(date);
     filterDate.setDate(filterDate.getDate()+1);
-    console.log(category);
     for (let i = 0; i < scheduleData.length ; i++) {
-      if(this.compareDate(filterDate, scheduleData[i].StartTime) && this.compareCategory(category, scheduleData[i].Description)
-      && this.compareParticipants(participant, scheduleData[i].Description)){
+      if(this.compareDate(filterDate, scheduleData[i]["StartTime"]) && this.compareCategory(category, scheduleData[i]["Description"])
+      && this.compareParticipants(participant, scheduleData[i]["Description"])){
         this.newData.push(this.data[i]);
       }
     }
     this.eventSettings = { dataSource: this.newData };
-
   }
 
 
@@ -135,6 +129,7 @@ export class CalenderComponent implements OnInit {
   }
 
   addNewEvent(form):void {
+    
     var startTime = new Date(form.value.date);
     if(form.value.sTime!=null){
       var sTime = form.value.sTime.split(":");
@@ -163,8 +158,6 @@ export class CalenderComponent implements OnInit {
     this.filteredData();
     // this.eventSettings = { dataSource: this.data };
     console.log(scheduleData[scheduleData.length-1]);
-
-
 
   }
 
