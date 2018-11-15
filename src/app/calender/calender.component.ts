@@ -37,7 +37,14 @@ export class CalenderComponent implements OnInit {
   public currentView: View = 'Week';
   filter = 'Basketball';
   currentFilter = '';
-
+  public categoryList=[];
+  public categories = [
+   {name: 'Basketball', typeList:['Basketball', 'Soccer', 'Chess']},
+   {name: 'Soccer', typeList: ['PingPong']},
+   {name: 'Damn', typeList: ['AA']},
+   {name: 'Daniel', typeList: ["Puzzles", "Scrabble"]},
+   {name: 'Kintramurals', typeList: ["Yoga", "Cardio"]},
+ ];
   oneventRendered(args: EventRenderedArgs): void {
     console.log(this.eventSettings.dataSource);
     const categoryColor: string = args.data.CategoryColor as string;
