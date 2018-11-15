@@ -1,13 +1,14 @@
-<div id="header" style="white-space:nowrap;">
-  <div id="text" style="display: inline; white-space: nowrap; text-align: center;" class="display-4">
-    Kintramurals
-  </div>
+<div class="control-section" style="width:100%">
 
-  <div id="image" style="display: inline; vertical-align:middle; position:absolute; text-align: right;">
-    <img src="../../assets/img/kinaxisLogo.png">
-  </div>
-</div>
-<div class="control-section">
+    <div id="header" style="white-space:nowrap; text-align: right;">
+        <div id="image" style="display: inline; vertical-align:right; position:absolute; text-align: right;">
+            <img src="../../assets/img/kinaxisLogo.png">
+          </div>
+      <div id="text" style="display: inline; white-space: nowrap; text-align: center;" class="display-4">
+        Kintramurals
+      </div>
+    </div>
+
   <div class="col-lg-9 content-wrapper">
     <ejs-schedule #schedule height='900px' [(selectedDate)]="selectedDate" [eventSettings]="eventSettings"
       (eventRendered)="oneventRendered($event)">
