@@ -49,7 +49,14 @@ input[type=submit]{
   padding-top: 20px;
 }
 
+#header{
+  padding-top:20px;
+  padding-bottom:20px;
+}
 
+#header > img {
+  align-content: right;
+}
 
 .button{
   padding-top: 10px;
