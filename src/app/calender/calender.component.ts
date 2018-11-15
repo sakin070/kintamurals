@@ -120,5 +120,15 @@ export class CalenderComponent implements OnInit {
 
   }
 
+  exportOutlook(form):void {
+    
+    for(var i = 0, len = scheduleData.length; i < len; i++) {
+      if(scheduleData[i]['Subject'] === form.value.eventName) {
+        console.log('found');
+        break;
+      }
+    }
+  }
+
 
 }

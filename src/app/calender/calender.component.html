@@ -83,7 +83,16 @@
           <input [(ngModel)]="eventForm.endTime"  type="text" class="form-control" name="eTime" placeholder="End time of event (24h clock)" id="eventETimeInput">
           <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
         </form>
+    </div>
+  </div>
 
+  <div class="row" id="exportOutlook">
+    <div class="col-md">
+        <h3 class="display-4">Export to Outlook</h3>
+        <form #eventForm="ngForm" (ngSubmit)="exportOutlook(eventForm.form);">
+          <input [(ngModel)]="exportOutlook.name"  type="text" class="form-control" placeholder="Event Name" name="eventName" id="eventNameInput">
+          <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
+        </form>
     </div>
   </div>
 </div>
