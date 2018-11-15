@@ -11,6 +11,7 @@ import { AppComponent } from '../app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { TimePickerModule } from '@syncfusion/ej2-angular-calendars';
 import { Router } from '@angular/router';
+import { OktaAuthService } from '@okta/okta-angular';
 
 @Component({
   selector: 'app-calender',
@@ -30,6 +31,8 @@ import { Router } from '@angular/router';
 })
 
 export class CalenderComponent implements OnInit {
+
+  isAuthenticated: boolean;
   public data: Object[] = <Object[]>extend([], scheduleData, null, true);
   public selectedDate: Date = new Date(2018, 1, 15);
   public eventSettings: EventSettingsModel = { dataSource: this.data };
@@ -72,11 +75,13 @@ export class CalenderComponent implements OnInit {
   }
 
 
-  constructor() { }
+  constructor(){
+
+   }
 
   ngOnInit() {
   }
-
+  
   addNewEvent(form):void {
     var startTime = new Date(form.value.date);
     if(form.value.sTime!=null){

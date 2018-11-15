@@ -1,14 +1,29 @@
+<div id="header" style="white-space:nowrap;">
+  <div id="text" style="display: inline; white-space: nowrap; text-align: center;" class="display-4">
+    Kintramurals
+  </div>
+
+  <div id="image" style="display: inline; vertical-align:middle; position:absolute; text-align: right;">
+    <img src="../../assets/img/kinaxisLogo.png">
+  </div>
+</div>
 <div class="control-section">
-    <div class="col-lg-9 content-wrapper">
-      <ejs-schedule #schedule height='900px' [(selectedDate)]="selectedDate" [eventSettings]="eventSettings" (eventRendered)="oneventRendered($event)">
-        <e-views>
-             <e-view option="Week"></e-view>
-             <e-view option="Month"></e-view>
-         </e-views>
-      </ejs-schedule>
-    </div>
-  
+  <div class="col-lg-9 content-wrapper">
+    <ejs-schedule #schedule height='900px' [(selectedDate)]="selectedDate" [eventSettings]="eventSettings"
+      (eventRendered)="oneventRendered($event)">
+      <e-views>
+        <e-view option="Week"></e-view>
+        <e-view option="Month"></e-view>
+      </e-views>
+    </ejs-schedule>
+  </div>
+
   <div class="col-lg-3 property-section">
+    <div class="row" id="loginRow">
+      <div class="col-md">
+        <button class="btn btn-outline-primary waves-effect btn-lg" id="loginButton">Login</button>
+      </div>
+    </div>
     <div class="row" id="filterRow">
       <div class="col-md">
         <!--<form id="filters" action="">
@@ -61,25 +76,41 @@
         </form> -->
         <h3 class="display-4">Filter Events</h3>
         <form #filterForm="ngForm" (ngSubmit)="filteredData(filterForm.form);">
-            <input [(ngModel)]="filterForm.date" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}">
-            <input [(ngModel)]="filterForm.Category" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}" type="text" class="form-control" name="Category" placeholder="Select a Category">
-            <button class="btn btn-outline-primary waves-effect btn-lg" >Submit</button>
-          </form>
+          <input [(ngModel)]="filterForm.date" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY"
+            [ngStyle]="{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}">
+          <input [(ngModel)]="filterForm.Category" [ngStyle]="{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}"
+            type="text" class="form-control" name="Category" placeholder="Select a Category">
+          <button class="btn btn-outline-primary waves-effect btn-lg">Submit</button>
+        </form>
       </div>
     </div>
     <div class="row" id="eventRow">
       <div class="col-md">
-          <h3 class="display-4">Add a new event</h3>
-          <form #eventForm="ngForm" (ngSubmit)="addNewEvent(eventForm.form);">
-            <input [(ngModel)]="eventForm.name" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}" type="text" class="form-control" placeholder="Event Name" name="eventName" id="eventNameInput">
-            <input [(ngModel)]="eventForm.data" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY" id="eventDateInput" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}">
-            <input [(ngModel)]="eventForm.Category" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}" type="text" class="form-control" name="Category" placeholder="Select a Category" id="eventCategoryInput">
-            <input [(ngModel)]="eventForm.startTime" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}" type="text" class="form-control" name="sTime" placeholder="Start time of event (24h clock)" id="eventSTimeInput">
-            <input [(ngModel)]="eventForm.endTime" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}" type="text" class="form-control" name="eTime" placeholder="End time of event (24h clock)" id="eventETimeInput">
-            <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
-          </form>
-        
+        <h3 class="display-4">Add a new event</h3>
+        <form #eventForm="ngForm" (ngSubmit)="addNewEvent(eventForm.form);">
+          <input [(ngModel)]="eventForm.name" [ngStyle]="{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}"
+            type="text" class="form-control" placeholder="Event Name" name="eventName" id="eventNameInput">
+          <input [(ngModel)]="eventForm.data" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY" id="eventDateInput"
+            [ngStyle]="{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}">
+          <input [(ngModel)]="eventForm.Category" [ngStyle]="{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}"
+            type="text" class="form-control" name="Category" placeholder="Select a Category" id="eventCategoryInput">
+          <input [(ngModel)]="eventForm.startTime" [ngStyle]="{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}"
+            type="text" class="form-control" name="sTime" placeholder="Start time of event (24h clock)" id="eventSTimeInput">
+          <input [(ngModel)]="eventForm.endTime" [ngStyle]="{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}"
+            type="text" class="form-control" name="eTime" placeholder="End time of event (24h clock)" id="eventETimeInput">
+          <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="row" id="outlookRow">
+      <div class="col-md">
+        <h3 class="display-4">Export to Outlook Calendar</h3>
+        <form #outlookForm="ngForm" (ngSubmit)="outlookExport(outlookForm.form);">
+          <input [(ngModel)]="eventForm.name" [ngStyle]="{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}"
+            type="text" class="form-control" name="eventName" placeholder="Enter the event name" id="eventNameInput">
+          <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
+        </form>
       </div>
     </div>
   </div>
-  </div>
+</div>

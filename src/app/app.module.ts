@@ -25,6 +25,7 @@ import { SharedModule } from './shared.module';
 import { AddEventFormModelComponent } from './add-event-form-model/add-event-form-model.component';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
