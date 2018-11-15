@@ -42,11 +42,12 @@ export class CalenderComponent implements OnInit {
   currentFilter = '';
   public categoryList=[];
   public categories = [{name:'All'},
-   {name: 'Basketball', typeList:['Basketball', 'Soccer', 'Chess']},
-   {name: 'Soccer', typeList: ['PingPong']},
-   {name: 'Damn', typeList: ['AA']},
-   {name: 'Daniel', typeList: ["Puzzles", "Scrabble"]},
-   {name: 'Kintramurals', typeList: ["Yoga", "Cardio"]},
+   {name: 'Basketball', colour: '#1aaa55'},
+   {name: 'Soccer', colour:'#f57f17'},
+   {name: 'Damn', colour: '#7fa900'},
+   {name: 'Daniel', colour:'#ea7a57'},
+   {name: 'Kintramurals', colour:'#00bdae'},
+   {name: 'Volleyball', colour:'#357cd2'},
   ];
   oneventRendered(args: EventRenderedArgs): void {
     const categoryColor: string = args.data.CategoryColor as string;
@@ -54,15 +55,16 @@ export class CalenderComponent implements OnInit {
     if (!args.element || !categoryColor) {
       return;
     }
-    if (this.currentView === 'Agenda') {
-      (args.element.firstChild as HTMLElement).style.borderLeftColor = categoryColor;
-    } else {
-
-      args.element.style.backgroundColor = categoryColor;
-      if (category.includes(this.filter)) {
-        args.element.style.backgroundColor = '#1aaa55';
-      }
-    }
+    args.element.style.backgroundColor = categoryColor;
+    // if (this.currentView === 'Agenda') {
+    //   (args.element.firstChild as HTMLElement).style.borderLeftColor = categoryColor;
+    // } else {
+    //
+    //   args.element.style.backgroundColor = categoryColor;
+    //   if (category.includes(this.filter)) {
+    //     args.element.style.backgroundColor = '#1aaa55';
+    //   }
+    // }
 
   }
 
@@ -122,6 +124,7 @@ export class CalenderComponent implements OnInit {
   addNewEvent(form):void {
     
     var startTime = new Date(form.value.date);
+    var categoryValue = form.value.Category;
     if(form.value.sTime!=null){
       var sTime = form.value.sTime.split(":");
       startTime.setDate(startTime.getDate()+1);
@@ -130,21 +133,35 @@ export class CalenderComponent implements OnInit {
     }
 
     var endTime = new Date(form.value.date);
+    var colorCode = 'a';
     if(form.value.eTime!=null){
       var eTime = form.value.eTime.split(":");
       endTime.setDate(endTime.getDate()+1);
       endTime.setHours(eTime[0]);
       endTime.setMinutes(eTime[1]);
     }
+    if(categoryValue != undefined || categoryValue.toLowerCase() != "all"){
+      colorCode = this.assignColour(categoryValue.toLowerCase());
+    }
 
+    var descriptionString;
     var event = {
       Id: scheduleData[scheduleData.length-1]['Id']+1,
       Subject: form.value.eventName,
       StartTime: startTime,
       EndTime: endTime,
-      Description: 'Category: Basketball <br/> Participants: Saheed, vee'
+      Description: 'Category: Basketball <br/> Participants: Saheed, vee',
+      CategoryColor: colorCode;
     };
     this.data.push(event);
     this.refreshCalendar();
   }
+  assignColour(categoryName):string{
+    var categoryPos = (this.categories).map(function(x) {return x.name.toLowerCase() }).indexOf(categoryName);
+    console.log(categoryPos);
+    var returnColour = this.categories[categoryPos].colour;
+    return returnColour;
+  }
+
+}
 }
