@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "@ng-bootstrap/ng-bootstrap": "^4.0.0",
     "@syncfusion/ej2-angular-base": "16.3.30",
     "@syncfusion/ej2-angular-buttons": "16.3.30",
     "@syncfusion/ej2-angular-calendars": "16.3.31",
@@ -74,6 +75,8 @@
     "bootstrap": "^4.1.3",
     "core-js": "^2.5.4",
     "firebase": "^5.5.8",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },

@@ -7,6 +7,94 @@
        </e-views>
     </ejs-schedule>
   </div>
+  <div class="col-lg-3 property-section">
+    <div class="row" id="filterRow">
+      <div class="col-md">
+        <h3 class="display-4">Filter Events</h3>
+          <form #filterForm="ngForm" (ngSubmit)="filteredData(filterForm.form);">
+            <input [(ngModel)]="filterForm.date" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}">
+
+            <select [(ngModel)]="filterForm.category" name="event-type" form="event-type-form">
+              <option value="all" disabled selected>Select Category</option>
+              <option *ngFor="let category of categories" [ngValue]="category.name">{{ category.name }}</option>
+            </select>
+
+            <select [(ngModel)]="filterForm.participant" name="event-type" form="event-type-form">
+              <option value="all" disabled selected>Select Participant</option>
+              <option *ngFor="let category of categories" [ngValue]="participant.name">{{ participant.name }}</option>
+            </select>
+
+            <button class="btn btn-outline-primary waves-effect btn-lg" >Submit</button>
+          </form>
+      </div>
+    </div>
+    <div class="row" id="eventRow">
+      <div class="col-md">
+          <h3 class="display-4">Add a new event</h3>
+          <form #eventForm="ngForm" (ngSubmit)="addNewEvent(eventForm.form);">
+            <input [(ngModel)]="eventForm.name" type="text" class="form-control" placeholder="Event Name" name="eventName" id="eventNameInput">
+            <input [(ngModel)]="eventForm.data" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY" id="eventDateInput" [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}">
+            <input [(ngModel)]="eventForm.Category" type="text" class="form-control" name="Category" placeholder="Select a Category" id="eventCategoryInput">
+            <input [(ngModel)]="eventForm.startTime" type="text" class="form-control" name="sTime" placeholder="Start time of event (24h clock)" id="eventSTimeInput">
+            <input [(ngModel)]="eventForm.endTime" type="text" class="form-control" name="eTime" placeholder="End time of event (24h clock)" id="eventETimeInput">
+            <select [(ngModel)]="eventForm.participant" name="participant-type" form="participant-type-form">
+              <option value="all" disabled selected>Select Participants</option>
+              <option *ngFor="let participant of participants" [ngValue]="participant.name">{{ participant.name }}</option>
+            </select>
+            <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
+          </form>
+      </div>
+    </div>
+    <!--
+    <div class="row" id="ParticipantRow">
+      <div class="col-md">
+          <h3 class="display-4">Admins</h3>
+          <form #eventForm="ngForm" (ngSubmit)="displayAdmins(adminForm.form);">
+            <output [(ngModel)]="adminForm.name1" type="text" class="form-control" placeholder="Admin 1" name="eventName" id="adminNameOutput"/>
+            <output [(ngModel)]="adminForm.name2" type="text" class="form-control" placeholder="Admin 2" name="eventName" id="adminNameOutput"/>
+            <output [(ngModel)]="adminForm.name3" type="text" class="form-control" placeholder="Admin 3" name="eventName" id="adminNameOutput"/>
+          </form>
+      </div>
+    </div>
+    -->
+    <!--
+    <div class="row" id="participantRow">
+      <div class="col-md">
+          <h3 class="display-4">Participants</h3>
+          <form #eventForm="ngForm" (ngSubmit)="Participants(participantForm.form);">
+            <typeList [(ngModel)]="participantForm.add" name="participant-type" form="participant-type-form">
+              <option value="" disabled selected>Add Participants</option>
+              <option *ngFor="let participant of participants" [ngValue]="participant.name">{{ participant.name }}</option>
+            </select>
+
+
+
+            <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
+            <p></p>
+            <output [(ngModel)]="participantForm.participants" type="text" >
+            <output [(ngModel)]="participantForm.participants" type="text" class="list-group" name="Participants" id="eventSTimeInput">
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form name="myForm" ng-controller="ExampleController">
+ <label>List: <input name="namesInput" ng-model="names" ng-list required></label>
+ <tt>names = {{names}}</tt>
+
+ </form>
+<!--
+while ($rows = mysql_fetch_array($query)) {
+   $naslov = $rows['naslov'];
+
+      echo '<li class="list-group-item"><a href="url">'.$naslov.'</a></li>';
+
+}
+-->
+
+
+<!--
   <div class="col-lg-3 people-section">
     <div class="people-panel-section">
       <p></p>
@@ -57,3 +145,4 @@
     </div>
   </div>
 </div>
+-->
