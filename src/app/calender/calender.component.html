@@ -61,13 +61,13 @@
         <button class="btn btn-primary">Submit</button>
       </form> -->
       <h3 class="display-4">Filter Events</h3>
-      <form #filterForm="ngForm" (ngSubmit)="filteredData(filterForm.form);">
-          <input [(ngModel)]="filterForm.date" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY">
-          <select [(ngModel)]="filterForm.category" name="event-type" form="event-type-form">
-            <option value="" disabled selected>Select Category</option>
+      <form #filterForm="ngForm" (ngSubmit)="searchFilterData(filterForm.form);">
+          <input [(ngModel)]="filterForm.date" type="date" class="form-control" name="dateFilter" placeholder="MM/DD/YYYY">
+          <select [(ngModel)]="filterForm.category" name="filterEventType" form="event-type-form">
+            <option [ngValue]="all" selected disabled>Select Category</option>
             <option *ngFor="let category of categories" [ngValue]="category.name">{{ category.name }}</option>
           </select>
-          <input [(ngModel)]="filterForm.Participants" type="text" class="form-control" name="Participants" placeholder="Select a Participant">
+          <input [(ngModel)]="filterForm.Participants" type="text" class="form-control" name="participantsFilter" placeholder="Select a Participant">
           <button class="btn btn-outline-primary waves-effect btn-lg" >Submit</button>
         </form>
     </div>

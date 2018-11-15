@@ -38,14 +38,15 @@ export class CalenderComponent implements OnInit {
   filter = 'Basketball';
   currentFilter = '';
   public categoryList=[];
-  public categories = [
+  public categories = [{name:'All'}
    {name: 'Basketball', typeList:['Basketball', 'Soccer', 'Chess']},
    {name: 'Soccer', typeList: ['PingPong']},
    {name: 'Damn', typeList: ['AA']},
    {name: 'Daniel', typeList: ["Puzzles", "Scrabble"]},
    {name: 'Kintramurals', typeList: ["Yoga", "Cardio"]},
- ];
+  ];
   oneventRendered(args: EventRenderedArgs): void {
+    console.log(scheduleData.length);
     console.log(this.eventSettings.dataSource);
     const categoryColor: string = args.data.CategoryColor as string;
     const category: string = args.data.Description as string;
@@ -61,15 +62,17 @@ export class CalenderComponent implements OnInit {
         args.element.style.backgroundColor = '#1aaa55';
       }
     }
-    this.filteredData();
+    //this.filteredData();
   }
 
   filteredData() {
+    //filter by category
     if (this.currentFilter !== this.filter) {
       this.newData = <Object[]> [];
       for (let i = 0; i < this.data.length ; i++) {
         // @ts-ignore
         const currentData = this.data[i].Description;
+
         if (currentData.includes(this.filter)) {
           this.newData.push(this.data[i]);
         }
@@ -79,6 +82,45 @@ export class CalenderComponent implements OnInit {
     }
 
   }
+
+  compareDate(date, ddate):boolean{
+    if(isNaN(date.getDate())){
+      return true;
+    }
+    if((date.getFullYear() == ddate.getFullYear()) && (date.getMonth() == ddate.getMonth()) && ((date.getDate() == ddate.getDate()))){
+      return true;
+    }
+    return false;
+  }
+
+  compareCategory(category, dcategory):boolean{
+    console.log(category);
+    if(category == 'All'){
+      //console.log(category);
+      return true;
+    }
+    if(dcategory.includes(category)){
+      return true;
+    }
+    return false;
+  }
+  
+  searchFilterData(form){
+    this.newData = <Object[]> [];
+    var date = form.value.dateFilter;
+    var category = form.value.filterEventType;
+    var filterDate = new Date(date);
+    filterDate.setDate(filterDate.getDate()+1);
+    console.log(category);
+    for (let i = 0; i < scheduleData.length ; i++) {
+      if(this.compareDate(filterDate, scheduleData[i].StartTime) && this.compareCategory(category, scheduleData[i].Description)){
+        this.newData.push(this.data[i]);
+      }
+    }
+    this.eventSettings = { dataSource: this.newData };
+
+  }
+
 
 
   constructor() { }
