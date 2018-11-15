@@ -815,7 +815,7 @@ export class CalenderComponent implements OnInit {
     }
     return false;
   }
-
+/* THIS MAKES NG SERVE FAIL
   searchFilterData(form){
     this.newData = <Object[]> [];
     var date = form.value.dateFilter;
@@ -834,6 +834,7 @@ export class CalenderComponent implements OnInit {
     this.eventSettings = { dataSource: this.newData };
 
   }
+*/
 
   constructor() { }
 
@@ -861,7 +862,6 @@ export class CalenderComponent implements OnInit {
       StartTime: startTime,
       EndTime: endTime,
       Description: 'Category: Basketball <br/> Participants: Saheed, vee',
-      Participants: 'hbaig@kinaxis.com'
     };
     console.log(scheduleData[scheduleData.length-1]);
     this.data.push(event);

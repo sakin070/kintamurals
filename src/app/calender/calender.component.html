@@ -45,20 +45,38 @@
           </form>
       </div>
     </div>
+
     <div class="row" id="participantRow">
       <div class="col-md">
           <h3 class="display-4">Participants</h3>
           <form #eventForm="ngForm" (ngSubmit)="Participants(participantForm.form);">
-            <select [(ngModel)]="participantForm.add" name="participant-type" form="participant-type-form">
+            <!--CHANGE TO MULTISELECT LIST-->
+            <select [(ngModel)]="eventForm.participant" name="participant-type" form="participant-type-form">
               <option value="all" disabled selected>Add Participants</option>
               <option *ngFor="let participant of participants" [ngValue]="participant.name">{{ participant.name }}</option>
             </select>
             <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
             <p></p>
+            <!-- WHEN SUBMIT ABOVE IS CLICKED SEND SELECTED PARTICIPANTS TO TXT FILE AND THEN ADD THEM TO PARTICIPANT LIST
             <ol>
-              <li> </li>
-            </ol>output [(ngModel)]="participantForm.participants" type="text" >
-            <output [(ngModel)]="participantForm.participants" type="text" class="list-group" name="Participants" id="eventSTimeInput">
+              <script type="text/javascript">
+                function pList(){
+                  var par[];
+                  onst fs = require('fs');
+                  var content;
+                  // First I want to read the file
+                  fs.readFile('./calendar.component.txt', function read(err, data) {
+                      if (err) {throw err;}
+                      for(int i=0; i < ){
+
+                      }
+                      content = data;
+                  for(int i=0; i < ){
+
+                  }
+                }
+              </script>
+            </ol>-->
           </form>
       </div>
     </div>
@@ -66,19 +84,14 @@
 </div>
 
 <!--
-
 <form name="myForm" ng-controller="ExampleController">
  <label>List: <input name="namesInput" ng-model="names" ng-list required></label>
  <tt>names = {{names}}</tt>
+</form>
 
- </form>
-
-
-<!--
 while ($rows = mysql_fetch_array($query)) {
    $naslov = $rows['naslov'];
 
       echo '<li class="list-group-item"><a href="url">'.$naslov.'</a></li>';
-
 }
 -->
