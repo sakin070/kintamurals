@@ -35,7 +35,7 @@ export class CalenderComponent implements OnInit {
   newData: Object[] = <Object[]> [];
   public selectedDate: Date = new Date(2018, 1, 15);
   public startHour: string = '08:00';
-  public endHour: string = '19:00';
+  public endHour: string = '18:00';
   public eventSettings: EventSettingsModel = { dataSource: scheduleData };
   public currentView: View = 'Week';
   filter = 'Basketball';
