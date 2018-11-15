@@ -19,69 +19,67 @@
     </ejs-schedule>
   </div>
 
-  <div class="col-lg-3 property-section">
-    <div class="row" id="loginRow">
-      <div class="col-md">
-        <button class="btn btn-outline-primary waves-effect btn-lg" id="loginButton">Login</button>
-      </div>
-    </div>
-    <div class="row" id="filterRow">
-      <div class="col-md">
-        <!--<form id="filters" action="">
-          <table id="property-table" title="Properties">
-            <colgroup style="height: 70pm" margin="10px">
-              <col class="tags" style="width: 50%">
-              <col id="values">
-            </colgroup>
-            <tbody>
-              <tr id="date">
-                <td>Current Date</td>
-                <td>
-                  <div>
-                    <ejs-datepicker #datepicker [(value)]='selectedDate' width="200px"></ejs-datepicker>
-                  </div>
-                </td>
-              </tr>
-              <tr id="event-name">
-                <td>Event Name</td>
-                <td>
-                  <div>
-                    <input type="text" id="event-input" value="">
-                  </div>
-                </td>
-              </tr>
-              <tr id="type">
-                <td>Type</td>
-                <td>
-                  <select name="event-type" form="event-type-form">
-                    <option value="">Select Type</option>
-                    <option value="Sports">Sports</option>
-                    <option value="Recreational">Recreational</option>
-                    <option value="Mental Wellness">Mental Wellness</option>
-                    <option value="Board Games">Board Games</option>
-                    <option value="Fitness">Fitness</option>
-                  </select>
-                </td>
-              </tr>
-              <tr id="participants">
-                <td>Participants</td>
-                <td>
-                  <div>
-                    <input type="text" id="event-input" value="">
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <button class="btn btn-primary">Submit</button>
-        </form> -->
-        <h3 class="display-4">Filter Events</h3>
-        <form #filterForm="ngForm" (ngSubmit)="filteredData(filterForm.form);">
-          <input [(ngModel)]="filterForm.date" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY"
-            [ngStyle]="{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}">
-          <input [(ngModel)]="filterForm.Category" [ngStyle]="{'font-size':'16px', 'line-height':'1.5', 'height':'40px', 'width':'100%'}"
-            type="text" class="form-control" name="Category" placeholder="Select a Category">
-          <button class="btn btn-outline-primary waves-effect btn-lg">Submit</button>
+<div class="col-lg-3 property-section">
+  <div class="row" id="filterRow">
+    <div class="col-md">
+      <!--<form id="filters" action="">
+        <table id="property-table" title="Properties">
+          <colgroup style="height: 70pm" margin="10px">
+            <col class="tags" style="width: 50%">
+            <col id="values">
+          </colgroup>
+          <tbody>
+
+            <tr id="date">
+              <td>Current Date</td>
+              <td>
+                <div>
+                  <ejs-datepicker #datepicker [(value)]='selectedDate' width="200px"></ejs-datepicker>
+                </div>
+              </td>
+            </tr>
+            <tr id="event-name">
+              <td>Event Name</td>
+              <td>
+                <div>
+                  <input type="text" id="event-input" value="">
+                </div>
+              </td>
+            </tr>
+            <tr id="type">
+              <td>Type</td>
+              <td>
+                <select name="event-type" form="event-type-form">
+                  <option value="">Select Type</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Recreational">Recreational</option>
+                  <option value="Mental Wellness">Mental Wellness</option>
+                  <option value="Board Games">Board Games</option>
+                  <option value="Fitness">Fitness</option>
+                </select>
+              </td>
+            </tr>
+            <tr id="participants">
+              <td>Participants</td>
+              <td>
+                <div>
+                  <input type="text" id="event-input" value="">
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-primary">Submit</button>
+      </form> -->
+      <h3 class="display-4">Filter Events</h3>
+      <form #filterForm="ngForm" (ngSubmit)="filteredData(filterForm.form);">
+          <input [(ngModel)]="filterForm.date" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY">
+          <select [(ngModel)]="filterForm.category" name="event-type" form="event-type-form">
+            <option value="" disabled selected>Select Category</option>
+            <option *ngFor="let category of categories" [ngValue]="category.name">{{ category.name }}</option>
+          </select>
+          <input [(ngModel)]="filterForm.Participants" type="text" class="form-control" name="Participants" placeholder="Select a Participant">
+          <button class="btn btn-outline-primary waves-effect btn-lg" >Submit</button>
         </form>
       </div>
     </div>

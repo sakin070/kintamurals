@@ -34,13 +34,22 @@ export class CalenderComponent implements OnInit {
 
   isAuthenticated: boolean;
   public data: Object[] = <Object[]>extend([], scheduleData, null, true);
+  newData: Object[] = <Object[]> [];
   public selectedDate: Date = new Date(2018, 1, 15);
   public eventSettings: EventSettingsModel = { dataSource: this.data };
   public currentView: View = 'Week';
   filter = 'Basketball';
   currentFilter = '';
-
+  public categoryList=[];
+  public categories = [
+   {name: 'Basketball', typeList:['Basketball', 'Soccer', 'Chess']},
+   {name: 'Soccer', typeList: ['PingPong']},
+   {name: 'Damn', typeList: ['AA']},
+   {name: 'Daniel', typeList: ["Puzzles", "Scrabble"]},
+   {name: 'Kintramurals', typeList: ["Yoga", "Cardio"]},
+ ];
   oneventRendered(args: EventRenderedArgs): void {
+    console.log(this.eventSettings.dataSource);
     const categoryColor: string = args.data.CategoryColor as string;
     const category: string = args.data.Description as string;
     if (!args.element || !categoryColor) {
@@ -51,7 +60,7 @@ export class CalenderComponent implements OnInit {
     } else {
 
       args.element.style.backgroundColor = categoryColor;
-      if (category.includes('Basketball')) {
+      if (category.includes(this.filter)) {
         args.element.style.backgroundColor = '#1aaa55';
       }
     }
@@ -60,15 +69,15 @@ export class CalenderComponent implements OnInit {
 
   filteredData() {
     if (this.currentFilter !== this.filter) {
-      const newData: Object[] = <Object[]> [];
+      this.newData = <Object[]> [];
       for (let i = 0; i < this.data.length ; i++) {
         // @ts-ignore
         const currentData = this.data[i].Description;
         if (currentData.includes(this.filter)) {
-          newData.push(this.data[i]);
+          this.newData.push(this.data[i]);
         }
       }
-      this.eventSettings = { dataSource: newData };
+      this.eventSettings = { dataSource: this.newData };
       this.currentFilter = this.filter;
     }
 
@@ -101,14 +110,29 @@ export class CalenderComponent implements OnInit {
       Id: scheduleData[scheduleData.length-1]['Id']+1,
       Subject: form.value.eventName,
       StartTime: startTime,
-      EndTime: endTime
+      EndTime: endTime,
+      Description: 'Category: Basketball <br/> Participants: Saheed, vee'
     };
     console.log(scheduleData[scheduleData.length-1]);
-    scheduleData.push(event);
+    this.data.push(event);
+    console.log(event);
+    this.currentFilter = '';
+    this.filteredData();
+    // this.eventSettings = { dataSource: this.data };
     console.log(scheduleData[scheduleData.length-1]);
 
 
 
+  }
+
+  exportOutlook(form):void {
+    
+    for(var i = 0, len = scheduleData.length; i < len; i++) {
+      if(scheduleData[i]['Subject'] === form.value.eventName) {
+        console.log('found');
+        break;
+      }
+    }
   }
 
 
