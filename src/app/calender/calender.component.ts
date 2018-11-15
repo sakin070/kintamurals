@@ -95,25 +95,31 @@ export class CalenderComponent implements OnInit {
 
   compareCategory(category, dcategory):boolean{
     console.log(category);
-    if(category == 'All'){
-      //console.log(category);
-      return true;
-    }
-    if(dcategory.includes(category)){
+    if(dcategory.includes(category) || category == 'All'){
       return true;
     }
     return false;
   }
-  
+
+  compareParticipants(participants, dparticipants){
+    if(dparticipants.includes(participants) || participants == undefined){
+      return true;
+    }
+    return false;
+  }
+
   searchFilterData(form){
     this.newData = <Object[]> [];
     var date = form.value.dateFilter;
     var category = form.value.filterEventType;
+    var participant = form.value.participantsFilter;
+    console.log(participant);
     var filterDate = new Date(date);
     filterDate.setDate(filterDate.getDate()+1);
     console.log(category);
     for (let i = 0; i < scheduleData.length ; i++) {
-      if(this.compareDate(filterDate, scheduleData[i].StartTime) && this.compareCategory(category, scheduleData[i].Description)){
+      if(this.compareDate(filterDate, scheduleData[i].StartTime) && this.compareCategory(category, scheduleData[i].Description)
+      && this.compareParticipants(participant, scheduleData[i].Description)){
         this.newData.push(this.data[i]);
       }
     }
