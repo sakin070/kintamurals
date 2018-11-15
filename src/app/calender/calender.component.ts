@@ -62,25 +62,15 @@ export class CalenderComponent implements OnInit {
         args.element.style.backgroundColor = '#1aaa55';
       }
     }
-    //this.filteredData();
+
   }
 
-  filteredData() {
-    //filter by category
-    if (this.currentFilter !== this.filter) {
+  refreshCalendar() {
       this.newData = <Object[]> [];
       for (let i = 0; i < this.data.length ; i++) {
-        // @ts-ignore
-        const currentData = this.data[i].Description;
-
-        if (currentData.includes(this.filter)) {
-          this.newData.push(this.data[i]);
-        }
+        this.newData.push(this.data[i]);
       }
       this.eventSettings = { dataSource: this.newData };
-      this.currentFilter = this.filter;
-    }
-
   }
 
   compareDate(date, ddate):boolean{
@@ -116,7 +106,6 @@ export class CalenderComponent implements OnInit {
     console.log(participant);
     var filterDate = new Date(date);
     filterDate.setDate(filterDate.getDate()+1);
-    console.log(category);
     for (let i = 0; i < scheduleData.length ; i++) {
       if(this.compareDate(filterDate, scheduleData[i].StartTime) && this.compareCategory(category, scheduleData[i].Description)
       && this.compareParticipants(participant, scheduleData[i].Description)){
@@ -127,8 +116,6 @@ export class CalenderComponent implements OnInit {
 
   }
 
-
-
   constructor() { }
 
   ngOnInit() {
@@ -138,6 +125,7 @@ export class CalenderComponent implements OnInit {
     var startTime = new Date(form.value.date);
     if(form.value.sTime!=null){
       var sTime = form.value.sTime.split(":");
+      startTime.setDate(startTime.getDate()+1);
       startTime.setHours(sTime[0]);
       startTime.setMinutes(sTime[1]);
     }
@@ -145,6 +133,7 @@ export class CalenderComponent implements OnInit {
     var endTime = new Date(form.value.date);
     if(form.value.eTime!=null){
       var eTime = form.value.eTime.split(":");
+      endTime.setDate(endTime.getDate()+1);
       endTime.setHours(eTime[0]);
       endTime.setMinutes(eTime[1]);
     }
@@ -156,15 +145,9 @@ export class CalenderComponent implements OnInit {
       EndTime: endTime,
       Description: 'Category: Basketball <br/> Participants: Saheed, vee'
     };
-    console.log(scheduleData[scheduleData.length-1]);
+
     this.data.push(event);
-    console.log(event);
-    this.currentFilter = '';
-    this.filteredData();
-    // this.eventSettings = { dataSource: this.data };
-    console.log(scheduleData[scheduleData.length-1]);
-
-
+    this.refreshCalendar();
 
   }
 
