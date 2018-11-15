@@ -11,7 +11,7 @@
   </div>
   <div class="col-lg-9 content-wrapper">
     <ejs-schedule #schedule height='900px' [(selectedDate)]="selectedDate" [eventSettings]="eventSettings"
-      (eventRendered)="oneventRendered($event)">
+      (eventRendered)="oneventRendered($event)" [startHour]="startHour" [endHour]="endHour">
       <e-views>
         <e-view option="Week"></e-view>
         <e-view option="Month"></e-view>
