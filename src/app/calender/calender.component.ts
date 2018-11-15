@@ -38,20 +38,21 @@ export class CalenderComponent implements OnInit {
   filter = 'Basketball';
   currentFilter = '';
   public categoryList=[];
-  public categories = [
+  public categories = [{name:'All'}
    {name: 'Basketball', typeList:['Basketball', 'Soccer', 'Chess']},
    {name: 'Soccer', typeList: ['PingPong']},
    {name: 'Damn', typeList: ['AA']},
    {name: 'Daniel', typeList: ["Puzzles", "Scrabble"]},
    {name: 'Kintramurals', typeList: ["Yoga", "Cardio"]},
   ];
-  /*
-  public participantList=[];
-  public participants = [
-    {name: 'hbaig@kinaxis.com'}, typeList: []
-  ];*/
 
+  public participantList=[];
+  public participants = [{name:'All'}
+    {name: 'hbaig@kinaxis.com'}, typeList: []
+  ];
+  
   oneventRendered(args: EventRenderedArgs): void {
+    console.log(scheduleData.length);
     console.log(this.eventSettings.dataSource);
     const categoryColor: string = args.data.CategoryColor as string;
     const category: string = args.data.Description as string;
@@ -67,15 +68,17 @@ export class CalenderComponent implements OnInit {
         args.element.style.backgroundColor = '#1aaa55';
       }
     }
-    this.filteredData();
+    //this.filteredData();
   }
 
   filteredData() {
+    //filter by category
     if (this.currentFilter !== this.filter) {
       this.newData = <Object[]> [];
       for (let i = 0; i < this.data.length ; i++) {
         // @ts-ignore
         const currentData = this.data[i].Description;
+
         if (currentData.includes(this.filter)) {
           this.newData.push(this.data[i]);
         }
@@ -85,6 +88,51 @@ export class CalenderComponent implements OnInit {
     }
 
   }
+
+  compareDate(date, ddate):boolean{
+    if(isNaN(date.getDate())){
+      return true;
+    }
+    if((date.getFullYear() == ddate.getFullYear()) && (date.getMonth() == ddate.getMonth()) && ((date.getDate() == ddate.getDate()))){
+      return true;
+    }
+    return false;
+  }
+
+  compareCategory(category, dcategory):boolean{
+    console.log(category);
+    if(dcategory.includes(category) || category == 'All'){
+      return true;
+    }
+    return false;
+  }
+
+  compareParticipants(participants, dparticipants){
+    if(dparticipants.includes(participants) || participants == undefined){
+      return true;
+    }
+    return false;
+  }
+
+  searchFilterData(form){
+    this.newData = <Object[]> [];
+    var date = form.value.dateFilter;
+    var category = form.value.filterEventType;
+    var participant = form.value.participantsFilter;
+    console.log(participant);
+    var filterDate = new Date(date);
+    filterDate.setDate(filterDate.getDate()+1);
+    console.log(category);
+    for (let i = 0; i < scheduleData.length ; i++) {
+      if(this.compareDate(filterDate, scheduleData[i].StartTime) && this.compareCategory(category, scheduleData[i].Description)
+      && this.compareParticipants(participant, scheduleData[i].Description)){
+        this.newData.push(this.data[i]);
+      }
+    }
+    this.eventSettings = { dataSource: this.newData };
+
+  }
+
 
 
   constructor() { }

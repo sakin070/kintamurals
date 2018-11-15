@@ -23,8 +23,8 @@ export let scheduleData: Object[] = [
         Subject: 'Blue Moon Eclipse',
         StartTime: new Date(2018, 1, 13, 9, 30),
         EndTime: new Date(2018, 1, 13, 11, 0),
-        CategoryColor: '#7fa900',
-        Description: ' dss'
+        CategoryColor: '#7fa900'
+        ,Description: ' dss'
     }, {
         Id: 4,
         Subject: 'Meteor Showers in 2018',

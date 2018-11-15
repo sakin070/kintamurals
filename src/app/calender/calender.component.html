@@ -1,6 +1,6 @@
 <div class="control-section">
   <div class="col-lg-9 content-wrapper">
-    <ejs-schedule #schedule height='900px' [(selectedDate)]="selectedDate" [eventSettings]="eventSettings">
+    <ejs-schedule #schedule height='900px' [(selectedDate)]="selectedDate" [eventSettings]="eventSettings" (eventRendered)="oneventRendered($event)">
       <e-views>
            <e-view option="Week"></e-view>
            <e-view option="Month"></e-view>
@@ -138,11 +138,56 @@ while ($rows = mysql_fetch_array($query)) {
                 <div><ejs-listview></ejs-listview></div>
               </td>
             </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+            <tr id="type">
+              <td>Type</td>
+              <td>
+                <select name="event-type" form="event-type-form">
+                  <option value="">Select Type</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Recreational">Recreational</option>
+                  <option value="Mental Wellness">Mental Wellness</option>
+                  <option value="Board Games">Board Games</option>
+                  <option value="Fitness">Fitness</option>
+                </select>
+              </td>
+            </tr>
+            <tr id="participants">
+              <td>Participants</td>
+              <td>
+                <div>
+                  <input type="text" id="event-input" value="">
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="btn btn-primary">Submit</button>
+      </form> -->
+      <h3 class="display-4">Filter Events</h3>
+      <form #filterForm="ngForm" (ngSubmit)="searchFilterData(filterForm.form);">
+          <input [(ngModel)]="filterForm.date" type="date" class="form-control" name="dateFilter" placeholder="MM/DD/YYYY">
+          <select [(ngModel)]="filterForm.category" name="filterEventType" form="event-type-form">
+            <option [ngValue]="all" selected disabled>Select Category</option>
+            <option *ngFor="let category of categories" [ngValue]="category.name">{{ category.name }}</option>
+          </select>
+          <input [(ngModel)]="filterForm.Participants" type="text" class="form-control" name="participantsFilter" placeholder="Select a Participant">
+          <button class="btn btn-outline-primary waves-effect btn-lg" >Submit</button>
+        </form>
+    </div>
+  </div>
+  <div class="row" id="eventRow">
+    <div class="col-md">
+        <h3 class="display-4">Add a new event</h3>
+        <form #eventForm="ngForm" (ngSubmit)="addNewEvent(eventForm.form);">
+          <input [(ngModel)]="eventForm.name"  type="text" class="form-control" placeholder="Event Name" name="eventName" id="eventNameInput">
+          <input [(ngModel)]="eventForm.data" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY" id="eventDateInput" >
+          <input [(ngModel)]="eventForm.Category"  type="text" class="form-control" name="Category" placeholder="Select a Category" id="eventCategoryInput">
+          <input [(ngModel)]="eventForm.startTime"  type="text" class="form-control" name="sTime" placeholder="Start time of event (24h clock)" id="eventSTimeInput">
+          <input [(ngModel)]="eventForm.endTime"  type="text" class="form-control" name="eTime" placeholder="End time of event (24h clock)" id="eventETimeInput">
+          <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
+        </form>
+
     </div>
   </div>
 </div>
--->
+</div>
