@@ -1,8 +1,17 @@
 # Kintamurals
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+Kintamurals is latest calendar based web app which allows all Kinaxis employees to access various events occuring throughout Kinaxis HQ. Kintamurals gives a wide variety of functionality ranging from scheduling events, adding multiple participants and colour coding types of events for quick identification.
 
-## Development server
+## Know Sooner, Act Faster.
+
+### ONLY AT KINAXIS.
+
+
+
+
+
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
@@ -25,4 +34,3 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-# kintamurals
