@@ -83,6 +83,7 @@
         </form>
       </div>
     </div>
+
     <div class="row" id="eventRow">
       <div class="col-md">
         <h3 class="display-4">Add a new event</h3>
@@ -104,6 +105,21 @@
             <input [(ngModel)]="exportForm.name"  type="text" class="form-control" placeholder="Event Name" name="eventName" id="eventNameInput">
             <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
           </form>
+      </div>
+    </div>
+
+    <div class="row" id="participantRow">
+      <div class="col-md">
+        <h3 class="display-4">Participants</h3>
+        <form #participantForm="ngForm">
+          <select [(ngModel)]="participantForm.participant" name="participant" form="participant-type-form" id="multisel" multiple  [ngStyle] = "{'font-size':'16px', 'line-height':'1.5', 'height':'90%', 'width':'100%'}">
+            <option value="all" disabled selected>Select Participants</option>
+            <option *ngFor="let participant of participants" [ngValue]="participant.name">{{ participant.name }}</option>
+          </select>
+          <p id="participantList" [ngStyle] = "{'font-size':'16px'}">List: <br> </p>
+          <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton" (click)="addParticipants(participantForm.form)">Add</button>
+          <button class="btn btn-outline-primary waves-effect btn-lg" (click)="clearParticipant(participantForm.form)">Clear</button>
+        </form>
       </div>
     </div>
 

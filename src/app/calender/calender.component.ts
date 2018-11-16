@@ -3,7 +3,7 @@ import { extend } from '@syncfusion/ej2-base';
 import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthService,
   AgendaService, View, ResizeService, DragAndDropService, EventRenderedArgs, Schedule} from '@syncfusion/ej2-angular-schedule';
 
-import { scheduleData } from '../datasource';
+import { scheduleData, participants } from '../datasource';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes} from '@angular/router';
@@ -47,6 +47,7 @@ export class CalenderComponent implements OnInit {
    {name: 'Kinaxis Training', colour:'#ea7a57'},
    {name: 'Kinaxis Classes', colour:'#00bdae'}
   ];
+  public participants = participants;
   oneventRendered(args: EventRenderedArgs): void {
     console.log(scheduleData.length);
     console.log(this.eventSettings.dataSource);
@@ -285,5 +286,16 @@ export class CalenderComponent implements OnInit {
     }
   }
 
+  addParticipants(form):void{
+    if (form.value.participant != undefined) {
+      for(var i=0; i<form.value.participant.length; i++){
+        document.getElementById("participantList").innerHTML += form.value.participant[i] + "<br>";
+      }
+    }
+  }
+
+  clearParticipant():void {
+    document.getElementById("participantList").innerHTML ="List: <br>";
+  }
 
 }
