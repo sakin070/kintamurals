@@ -869,9 +869,9 @@ export class CalenderComponent implements OnInit {
         }
       }
       for(int j=0;j<par.length;j++){
-        peep=peep+par[j];
+        people=people+par[j];
         if(j!=par[(par.length)-1]){
-          peep=peep+", ";
+          people=people+", ";
         }
       }
     }
@@ -881,7 +881,7 @@ export class CalenderComponent implements OnInit {
       Subject: form.value.eventName,
       StartTime: startTime,
       EndTime: endTime,
-      Description: 'Category: Basketball <br/> Participants: ' + peep,
+      Description: 'Category: Basketball <br/> Participants: ' + people,
     };
     console.log(scheduleData[scheduleData.length-1]);
     this.data.push(event);
@@ -906,6 +906,5 @@ export class CalenderComponent implements OnInit {
 
 
   }
-
 
 }
