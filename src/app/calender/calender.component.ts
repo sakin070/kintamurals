@@ -177,10 +177,12 @@ export class CalenderComponent implements OnInit {
     var eDate;
     var location;
     var description;
+    var attendees;
     var fileText = "";
     var events = this.eventSettings.dataSource as Array<Schedule>;
-    console.log("test\n");
-    console.log(events);
+    // console.log("test\n");
+    // console.log(events);
+    // console.log(document.getElementById("participantList").innerText);
 
     for(var i = 0, len = events.length; i < len; i++) {
       if(events[i]['Subject'] === form.value.eventName) {
@@ -189,14 +191,23 @@ export class CalenderComponent implements OnInit {
         eDate = this.formatDate(events[i]['EndTime']);
         location = events[i]['Location'];
         description = events[i]['Description'];
+        attendees = this.getAttendees();
+
         
-        fileText = this.getIcsCalendar(eventName, sDate, eDate, location,description);
+        fileText = this.getIcsCalendar(eventName, sDate, eDate, location,description, attendees);
         this.saveTextAsFile(fileText, eventName + '.ics');
 
         return;
       }
     }
     alert("Could not find specified event. Please enter a different one.");
+  }
+
+  private getAttendees() {
+    var par = document.getElementById("participantList").innerText.split("\n");
+    par.splice(0,1);
+    par.splice(par.length - 1, 1);
+    return par;
   }
 
   private formatDate(date) {
@@ -235,12 +246,20 @@ export class CalenderComponent implements OnInit {
     return newDate;
   }
 
-  private getIcsCalendar(eventName, sDate, eDate, location, description) {
+  private getIcsCalendar(eventName, sDate, eDate, location, description, attendees) {
+
+    var attendance = "";
+
+    for(var i = 0; i < attendees.length; i++) {
+      attendance += 'ATTENDEE; mailto:' + attendees[i] + "\n"
+    }
+
     return [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
       'BEGIN:VEVENT',
       'CLASS:PUBLIC',
+      attendance,
       'DTSTART:' + sDate,
       'DTEND:' + eDate,
       'LOCATION:' + location,
