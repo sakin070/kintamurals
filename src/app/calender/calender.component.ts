@@ -1,7 +1,7 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { extend } from '@syncfusion/ej2-base';
 import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthService,
-  AgendaService, View, ResizeService, DragAndDropService, EventRenderedArgs } from '@syncfusion/ej2-angular-schedule';
+  AgendaService, View, ResizeService, DragAndDropService, EventRenderedArgs, Schedule } from '@syncfusion/ej2-angular-schedule';
 
 import { scheduleData } from '../datasource';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -108,25 +108,128 @@ export class CalenderComponent implements OnInit {
       EndTime: endTime,
       Description: 'Category: Basketball <br/> Participants: Saheed, vee'
     };
-    console.log(scheduleData[scheduleData.length-1]);
+    //console.log(scheduleData[scheduleData.length-1]);
     this.data.push(event);
-    console.log(event);
+    //console.log(event);
     this.currentFilter = '';
     this.filteredData();
     // this.eventSettings = { dataSource: this.data };
-    console.log(scheduleData[scheduleData.length-1]);
+    //console.log(scheduleData[scheduleData.length-1]);
 
 
 
   }
 
   exportOutlook(form):void {
-    
-    for(var i = 0, len = scheduleData.length; i < len; i++) {
-      if(scheduleData[i]['Subject'] === form.value.eventName) {
-        console.log('found');
-        break;
+    var fileText = '';
+    var eventName;
+    var sDate;
+    var eDate;
+    var location;
+    var fileText = "";
+    var events = this.eventSettings.dataSource as Array<Schedule>;
+    console.log("test\n");
+    console.log(events);
+
+    for(var i = 0, len = events.length; i < len; i++) {
+      if(events[i]['Subject'] === form.value.eventName) {
+        eventName = events[i]['Subject'];
+        sDate = this.formatDate(events[i]['StartTime']);
+        eDate = this.formatDate(events[i]['EndTime']);
+        location = events[i]['Location'];
+        
+        fileText = this.getIcsCalendar(eventName, sDate, eDate, location);
+        this.saveTextAsFile(fileText, eventName + '.ics');
+
+        return;
       }
+    }
+    alert("Could not find specified event. Please enter a different one.");
+  }
+
+  private formatDate(date) {
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    //[Day of the week, Month, Day, Year, HH:MM:SS]
+    date = date.toString().split(" ", 5);
+  
+    //year
+    var newDate = date[3];
+
+    //month
+    var monthIndex = (months.findIndex((month)=> {
+      return month == date[1];
+    })) + 1;
+    if (monthIndex < 10) {
+      newDate += "0" + monthIndex;
+    }
+    else {
+      newDate += monthIndex;
+    }
+    
+    //day
+    if (date[2] < 10) {
+      newDate += "0" + date[2];
+    }
+    else {
+      newDate += date[2];
+    }
+
+    //time
+    var time = date[4].replace(/:/gi, "");
+    newDate += "T" + time; 
+
+    //YYYYMMDDTHHMMSS
+    return newDate;
+  }
+
+  private getIcsCalendar(eventName, sDate, eDate, location) {
+    return [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'BEGIN:VEVENT',
+      'CLASS:PUBLIC',
+      'DTSTART:' + sDate,
+      'DTEND:' + eDate,
+      'LOCATION:' + location,
+      'SUMMARY:' + eventName,
+      'TRANSP:TRANSPARENT',
+      'END:VEVENT',
+      'END:VCALENDAR',
+      'UID:' + this.getUid(),
+      'PRODID:angular-addtocalendar'
+    ].join('\n');
+  }
+
+  private getUid() {
+    return Math.random().toString(36).substr(2);
+  }
+
+  private saveTextAsFile (data, filename){
+
+    if(!data) {
+        console.error('Console.save: No data')
+        return;
+    }
+
+    if(!filename) filename = 'console.json'
+
+    var blob = new Blob([data], {type: 'text/plain'}),
+        e    = document.createEvent('MouseEvents'),
+        a    = document.createElement('a')
+
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(blob, filename);
+    }
+    else{
+      var e = document.createEvent('MouseEvents'),
+          a = document.createElement('a');
+
+      a.download = filename;
+      a.href = window.URL.createObjectURL(blob);
+      a.dataset.downloadurl = ['text/plain', a.download, a.href].join(':');
+      e.initEvent('click');
+      a.dispatchEvent(e);
     }
   }
 
