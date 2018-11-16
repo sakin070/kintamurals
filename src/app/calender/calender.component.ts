@@ -126,6 +126,7 @@ export class CalenderComponent implements OnInit {
     var sDate;
     var eDate;
     var location;
+    var description;
     var fileText = "";
     var events = this.eventSettings.dataSource as Array<Schedule>;
     console.log("test\n");
@@ -137,8 +138,9 @@ export class CalenderComponent implements OnInit {
         sDate = this.formatDate(events[i]['StartTime']);
         eDate = this.formatDate(events[i]['EndTime']);
         location = events[i]['Location'];
+        description = events[i]['Description'];
         
-        fileText = this.getIcsCalendar(eventName, sDate, eDate, location);
+        fileText = this.getIcsCalendar(eventName, sDate, eDate, location,description);
         this.saveTextAsFile(fileText, eventName + '.ics');
 
         return;
@@ -183,7 +185,7 @@ export class CalenderComponent implements OnInit {
     return newDate;
   }
 
-  private getIcsCalendar(eventName, sDate, eDate, location) {
+  private getIcsCalendar(eventName, sDate, eDate, location, description) {
     return [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
@@ -193,6 +195,7 @@ export class CalenderComponent implements OnInit {
       'DTEND:' + eDate,
       'LOCATION:' + location,
       'SUMMARY:' + eventName,
+      'DESCRIPTION:' + description,
       'TRANSP:TRANSPARENT',
       'END:VEVENT',
       'END:VCALENDAR',
