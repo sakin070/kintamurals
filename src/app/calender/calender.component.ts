@@ -858,52 +858,51 @@ export class CalenderComponent implements OnInit {
       endTime.setMinutes(eTime[1]);
     }
 
-    var par:string = [];
-    var people:string = "";
-    var count = 0;
-    if(form.value.participant != null){
-      for(int i=0; i<form.participant.option.length; i++){
-        if(form.participant.option[i].selected){
-          par[count] = form.participant.option[i].value;
-          count++;
-        }
-      }
-      for(int j=0;j<par.length;j++){
-        people=people+par[j];
-        if(j!=par[(par.length)-1]){
-          people=people+", ";
-        }
-      }
-    }
-
     var event = {
       Id: scheduleData[scheduleData.length-1]['Id']+1,
       Subject: form.value.eventName,
       StartTime: startTime,
       EndTime: endTime,
-      Description: 'Category: Basketball <br/> Participants: ' + people,
+      Description: 'Category: Basketball <br/> Participants: ',
     };
     console.log(scheduleData[scheduleData.length-1]);
     this.data.push(event);
     console.log(event);
     this.currentFilter = '';
-    this.filteredData();
+    //this.filteredData();
     // this.eventSettings = { dataSource: this.data };
     console.log(scheduleData[scheduleData.length-1]);
 
     //setting participantList array to take in participant chosen
-    for(int k=0;k<par.length;k++){
-      participantList[k] = par[k];
-    }
+
   }
 
   addParticipants(form):void{
+    console.log("help");
+    console.log(form);
+    //console.log(form.value.participantName.value);
 
+    console.log(document.getElementById("demo").innerHTML);
+   for(var i=0; i<form.value.participant.length; i++){
+     document.getElementById("demo").innerHTML += form.value.participant[i] + "<br>";
+   }
 
+    // var par = [];
+    // var count = 0;
+    // if(form.value.participant != null){
+    //   for(var i=0; i<form.value.participant.length; i++){
+    //     if(form.participant[i].selected){
+    //       par[count] = form.participant[i].value;
+    //       count++;
+    //     }
+    //   }
+    // }
 
+    //console.log(par);
 
-
-
+    // for(int i=0; i<participantList.length; i++){
+    //   textarea = "hello";
+    // }
 
   }
 

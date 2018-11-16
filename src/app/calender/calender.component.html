@@ -34,25 +34,27 @@
             </select>
             <input [(ngModel)]="eventForm.startTime" type="text" class="form-control" name="sTime" placeholder="Start time of event (24h clock)" id="eventSTimeInput">
             <input [(ngModel)]="eventForm.endTime" type="text" class="form-control" name="eTime" placeholder="End time of event (24h clock)" id="eventETimeInput">
-            <select [(ngModel)]="eventForm.participant" name="participant" form="participant-type-form" id="multisel" multiple>
-              <option value="all" disabled selected>Select Participants</option>
-              <option *ngFor="let participant of participants" [ngValue]="participant.name">{{ participant.name }}</option>
-            </select>
-            <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
+
+
           </form>
       </div>
     </div>
 
     <div class="row" id="participantRow">
       <div class="col-md">
-          <h3 class="display-4">Participants</h3>
-          <form #eventForm="ngForm" (ngSubmit)="addParticipants(participantForm.form);">
-            <!--
-            <ol [(ngModel)]="participantForm.list" type="text" name="participant">
-              <li *ngFor></li>
-            </ol>
-            -->
-          </form>
+        <h3 class="display-4">Participants</h3>
+        <form #participantForm="ngForm" (ngSubmit)="addParticipants(participantForm.form);">
+          <select [(ngModel)]="participantForm.participant" name="participant" form="participant-type-form" id="multisel" multiple>
+            <option value="all" disabled selected>Select Participants</option>
+            <option *ngFor="let participant of participants" [ngValue]="participant.name">{{ participant.name }}</option>
+          </select>
+          <!-- <textarea [(ngModel)]="participantForm.participantName" name="participantName" rows="8" cols="80">
+            testing this crap
+          </textarea> -->
+          <p id="demo">List: <br> </p>
+          <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
+
+        </form>
       </div>
     </div>
   </div>
