@@ -11,7 +11,6 @@ export let scheduleData: Object[] = [
         Location: 'House',
         CategoryColor: '#1aaa55',
         Description: 'Category: Basketball <br/> Participants: Saheed, vee'
-        
     }, {
         Id: 2,
         Subject: 'Thule Air Crash Report',

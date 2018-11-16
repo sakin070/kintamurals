@@ -17,14 +17,11 @@
               <option value="all" disabled selected>Select Category</option>
               <option *ngFor="let category of categories" [ngValue]="category.name">{{ category.name }}</option>
             </select>
-            <select [(ngModel)]="filterForm.participant" name="participant-type" form="participant-type-form">
-              <option value="all" disabled selected>Select Participants</option>
-              <option *ngFor="let participant of participants" [ngValue]="participant.name">{{ participant.name }}</option>
-            </select>
             <button class="btn btn-outline-primary waves-effect btn-lg" >Submit</button>
           </form>
       </div>
     </div>
+
     <div class="row" id="eventRow">
       <div class="col-md">
           <h3 class="display-4">Add a new event</h3>
@@ -37,7 +34,7 @@
             </select>
             <input [(ngModel)]="eventForm.startTime" type="text" class="form-control" name="sTime" placeholder="Start time of event (24h clock)" id="eventSTimeInput">
             <input [(ngModel)]="eventForm.endTime" type="text" class="form-control" name="eTime" placeholder="End time of event (24h clock)" id="eventETimeInput">
-            <select [(ngModel)]="eventForm.participant" name="participant-type" form="participant-type-form">
+            <select [(ngModel)]="eventForm.participant" name="participant" form="participant-type-form" id="multisel" multiple>
               <option value="all" disabled selected>Select Participants</option>
               <option *ngFor="let participant of participants" [ngValue]="participant.name">{{ participant.name }}</option>
             </select>
@@ -49,34 +46,12 @@
     <div class="row" id="participantRow">
       <div class="col-md">
           <h3 class="display-4">Participants</h3>
-          <form #eventForm="ngForm" (ngSubmit)="Participants(participantForm.form);">
-            <!--CHANGE TO MULTISELECT LIST-->
-            <select [(ngModel)]="eventForm.participant" name="participant-type" form="participant-type-form">
-              <option value="all" disabled selected>Add Participants</option>
-              <option *ngFor="let participant of participants" [ngValue]="participant.name">{{ participant.name }}</option>
-            </select>
-            <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
-            <p></p>
-            <!-- WHEN SUBMIT ABOVE IS CLICKED SEND SELECTED PARTICIPANTS TO TXT FILE AND THEN ADD THEM TO PARTICIPANT LIST
-            <ol>
-              <script type="text/javascript">
-                function pList(){
-                  var par[];
-                  onst fs = require('fs');
-                  var content;
-                  // First I want to read the file
-                  fs.readFile('./calendar.component.txt', function read(err, data) {
-                      if (err) {throw err;}
-                      for(int i=0; i < ){
-
-                      }
-                      content = data;
-                  for(int i=0; i < ){
-
-                  }
-                }
-              </script>
-            </ol>-->
+          <form #eventForm="ngForm" (ngSubmit)="addParticipants(participantForm.form);">
+            <!--
+            <ol [(ngModel)]="participantForm.list" type="text" name="participant">
+              <li *ngFor></li>
+            </ol>
+            -->
           </form>
       </div>
     </div>
