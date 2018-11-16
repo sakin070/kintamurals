@@ -4,6 +4,12 @@
 
 export let scheduleData: Object[] = [
     {
+/**
+ * Schedule datasource
+ */
+
+export let scheduleData: Object[] = [
+    {
         Id: 1,
         Subject: 'Explosion of Betelgeuse Star',
         StartTime: new Date(2018, 1, 11, 9, 30),
@@ -11,21 +17,33 @@ export let scheduleData: Object[] = [
         Location: 'House',
         CategoryColor: '#1aaa55',
         Description: 'Category: Basketball <br/> Participants: Saheed, vee'
+        Id: 25,
+        Subject: 'Yoga',
+        StartTime: new Date(2018, 10, 13, 7, 30),
+        EndTime: new Date(2018, 10, 13, 8, 30),
+        CategoryColor: '#00bdae',
+        Description: 'Category: "Kinaxis Classes"'
     }, {
-        Id: 2,
-        Subject: 'Thule Air Crash Report',
-        StartTime: new Date(2018, 1, 12, 12, 0),
-        EndTime: new Date(2018, 1, 12, 14, 0),
-        CategoryColor: '#1aaa55',
-    Description: 'Category: Basketball <br/> Participants: Saheed, vee'
+        Id: 25,
+        Subject: 'Yoga',
+        StartTime: new Date(2018, 10, 16, 7, 30),
+        EndTime: new Date(2018, 10, 16, 8, 30),
+        CategoryColor: '#00bdae',
+        Description: 'Category: "Kinaxis Classes"'
     }, {
-        Id: 3,
-        Subject: 'Blue Moon Eclipse',
-        StartTime: new Date(2018, 1, 13, 9, 30),
-        EndTime: new Date(2018, 1, 13, 11, 0),
-        CategoryColor: '#7fa900'
-        ,Description: 'Category: "Damn" Participants: Saheed, vee'
+        Id: 27,
+        Subject: 'Personal Training - by Appointment',
+        StartTime: new Date(2018, 10, 14, 10, 0),
+        EndTime: new Date(2018, 10, 14, 11, 30),
+        CategoryColor: '#ea7a57',
+        Description: 'Category: "Kinaxis Training"'
     }, {
+        Id: 28,
+        Subject: 'Core Strenghtening',
+        StartTime: new Date(2018, 10, 14, 11, 30),
+        EndTime: new Date(2018, 10, 14, 12, 0),
+        CategoryColor: '#00bdae',
+        Description: 'Category: "Kinaxis Classes"'
         Id: 4,
         Subject: 'Meteor Showers in 2018',
         StartTime: new Date(2018, 1, 14, 13, 0),
@@ -33,34 +51,41 @@ export let scheduleData: Object[] = [
         CategoryColor: '#9370DB'
     ,Description: 'Category: Daniel <br/> Participants: Saheed, vee'
     }, {
-        Id: 5,
-        Subject: 'Milky Way as Melting pot',
-        StartTime: new Date(2018, 1, 15, 12, 0),
-        EndTime: new Date(2018, 1, 15, 14, 0),
-        CategoryColor: '#00bdae'
-    ,Description: 'Category: Kintramurals <br/> Participants: Saheed, vee'
+        Id: 28,
+        Subject: 'Core Strenghtening',
+        StartTime: new Date(2018, 10, 14, 12, 0),
+        EndTime: new Date(2018, 10, 14, 12, 30),
+        CategoryColor: '#00bdae',
+        Description: 'Category: "Kinaxis Classes"'
     }, {
-        Id: 6,
-        Subject: 'Mysteries of Bermuda Triangle',
-        StartTime: new Date(2018, 1, 15, 9, 30),
-        EndTime: new Date(2018, 1, 15, 11, 0),
+        Id: 28,
+        Subject: 'Core Strenghtening',
+        StartTime: new Date(2018, 10, 14, 12, 30),
+        EndTime: new Date(2018, 10, 14, 13, 0),
+        CategoryColor: '#00bdae',
+        Description: 'Category: "Kinaxis Classes"'
+    }, {
+        Id: 25,
+        Subject: 'Yoga',
+        StartTime: new Date(2018, 10, 14, 17, 30),
+        EndTime: new Date(2018, 10, 14, 18, 30),
+        CategoryColor: '#00bdae',
+        Description: 'Category: "Kinaxis Classes"'
+    }, {
+        Id: 28,
+        Subject: 'Basketball',
+        StartTime: new Date(2018, 10, 16, 11, 30),
+        EndTime: new Date(2018, 10, 16, 13, 30),
         CategoryColor: '#1aaa55',
-    Description: 'Category: Basketball <br/> Participants: Saheed, vee'
+        Location: "Richcraft Recreational Complex",
+        Description: 'Category: "Basketball"'
     }, {
-        Id: 7,
-        Subject: 'Glaciers and Snowflakes',
-        StartTime: new Date(2018, 1, 16, 11, 0),
-        EndTime: new Date(2018, 1, 16, 12, 30),
-        CategoryColor: '#1aaa55'
-    ,Description: 'Category: Basketball <br/> Participants: Saheed, vee'
-    }, {
-        Id: 8,
-        Subject: 'Life on Mars',
-        StartTime: new Date(2018, 1, 17, 9, 0),
-        EndTime: new Date(2018, 1, 17, 10, 0),
-        CategoryColor: '#357cd2'
-    ,Description: 'Category: Volleyball <br/> Participants: Saheed, vee'
-    }, {
+        Id: 27,
+        Subject: 'Personal Training - by Appointment',
+        StartTime: new Date(2018, 10, 14, 13, 0),
+        EndTime: new Date(2018, 10, 14, 14, 0),
+        CategoryColor: '#ea7a57',
+        Description: 'Category: "Kinaxis Training"'
         Id: 9,
         Subject: 'Alien Civilization',
         StartTime: new Date(2018, 1, 19, 11, 0),
