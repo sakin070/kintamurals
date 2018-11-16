@@ -89,7 +89,7 @@ export class CalenderComponent implements OnInit {
 
   compareCategory(category, dcategory):boolean{
     console.log(category);
-    if(dcategory.includes(category) || category == 'All'){
+    if(dcategory.includes(category) || category == "All" || category==undefined){
       return true;
     }
     return false;
@@ -129,7 +129,7 @@ export class CalenderComponent implements OnInit {
 
   addNewEvent(form):void {
     var startTime = new Date(form.value.date);
-    var categoryValue = form.value.Category;
+    var categoryValue = form.value.category;
     if(form.value.sTime!=null){
       var sTime = form.value.sTime.split(":");
       startTime.setDate(startTime.getDate()+1);
@@ -145,7 +145,7 @@ export class CalenderComponent implements OnInit {
       endTime.setHours(eTime[0]);
       endTime.setMinutes(eTime[1]);
     }
-    if(categoryValue != undefined || categoryValue.toLowerCase() != "all"){
+    if(categoryValue != undefined || categoryValue.toLowerCase() != "SelectCategory"){
       colorCode = this.assignColour(categoryValue.toLowerCase());
     }
 
@@ -155,11 +155,14 @@ export class CalenderComponent implements OnInit {
       Subject: form.value.eventName,
       StartTime: startTime,
       EndTime: endTime,
-      Description: 'Category: Basketball <br/> Participants: Saheed, vee',
+      Description: 'Category: ' + categoryValue  + '<br/> Participants: Saheed, vee',
       CategoryColor: colorCode
     };
 
     this.data.push(event);
+    form.reset();
+    var element = document.getElementById("addEventCategory");
+    element.selectedIndex = 0;
     this.refreshCalendar();
 
   }
@@ -191,6 +194,7 @@ export class CalenderComponent implements OnInit {
         eDate = this.formatDate(events[i]['EndTime']);
         location = events[i]['Location'];
         description = events[i]['Description'];
+
         attendees = this.getAttendees();
 
         
@@ -215,7 +219,7 @@ export class CalenderComponent implements OnInit {
 
     //[Day of the week, Month, Day, Year, HH:MM:SS]
     date = date.toString().split(" ", 5);
-  
+
     //year
     var newDate = date[3];
 
@@ -229,7 +233,7 @@ export class CalenderComponent implements OnInit {
     else {
       newDate += monthIndex;
     }
-    
+
     //day
     if (date[2] < 10) {
       newDate += "0" + date[2];
@@ -240,7 +244,7 @@ export class CalenderComponent implements OnInit {
 
     //time
     var time = date[4].replace(/:/gi, "");
-    newDate += "T" + time; 
+    newDate += "T" + time;
 
     //YYYYMMDDTHHMMSS
     return newDate;
