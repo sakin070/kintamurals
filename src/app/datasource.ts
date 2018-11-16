@@ -30,7 +30,7 @@ export let scheduleData: Object[] = [
         Subject: 'Meteor Showers in 2018',
         StartTime: new Date(2018, 1, 14, 13, 0),
         EndTime: new Date(2018, 1, 14, 14, 30),
-        CategoryColor: '#ea7a57'
+        CategoryColor: '#9370DB'
     ,Description: 'Category: Daniel <br/> Participants: Saheed, vee'
     }, {
         Id: 5,
@@ -72,7 +72,7 @@ export let scheduleData: Object[] = [
         Subject: 'Wildlife Galleries',
         StartTime: new Date(2018, 1, 21, 11, 0),
         EndTime: new Date(2018, 1, 21, 13, 0),
-        CategoryColor: '#ea7a57'
+        CategoryColor: '#9370DB'
     ,Description: 'Category: Daniel <br/> Participants: Saheed, vee'
     }, {
         Id: 11,
@@ -114,7 +114,7 @@ export let scheduleData: Object[] = [
         Subject: 'Sky Gazers',
         StartTime: new Date(2018, 1, 23, 11, 0),
         EndTime: new Date(2018, 1, 23, 13, 0),
-        CategoryColor: '#ea7a57'
+        CategoryColor: '#9370DB'
     ,Description: 'Category: Daniel Participants: Saheed, vee'
     }, {
         Id: 17,
@@ -142,14 +142,14 @@ export let scheduleData: Object[] = [
         Subject: 'Alien Civilization',
         StartTime: new Date(2018, 1, 15, 16, 0),
         EndTime: new Date(2018, 1, 15, 18, 0),
-        CategoryColor: '#ea7a57'
+        CategoryColor: '#9370DB'
     ,Description: 'Category: Daniel <br/> Participants: Saheed, vee'
     }, {
         Id: 21,
         Subject: 'Alien Civilization',
         StartTime: new Date(2018, 1, 11, 14, 0),
         EndTime: new Date(2018, 1, 11, 16, 0),
-        CategoryColor: '#ea7a57'
+        CategoryColor: '#9370DB'
     ,Description: 'Category: Daniel <br/> Participants: Saheed, vee'
     }, {
         Id: 22,
@@ -163,7 +163,7 @@ export let scheduleData: Object[] = [
         Subject: 'Sky Gazers',
         StartTime: new Date(2018, 1, 16, 14, 30),
         EndTime: new Date(2018, 1, 16, 16, 0),
-        CategoryColor: '#ea7a57'
+        CategoryColor: '#9370DB'
     ,Description: 'Category: Daniel <br/> Participants: Saheed, vee'
     }, {
         Id: 24,

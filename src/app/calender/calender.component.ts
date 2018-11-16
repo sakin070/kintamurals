@@ -44,9 +44,10 @@ export class CalenderComponent implements OnInit {
    {name: 'Basketball', colour: '#1aaa55'},
    {name: 'Soccer', colour:'#f57f17'},
    {name: 'Damn', colour: '#7fa900'},
-   {name: 'Daniel', colour:'#ea7a57'},
+   {name: 'Daniel', colour:'#9370DB'},
    {name: 'Kintramurals', colour:'#00bdae'},
-   {name: 'Volleyball', colour:'#357cd2'}
+   {name: 'Volleyball', colour:'#357cd2'},
+   {name: 'Other', colour:'#708090'}
   ];
   oneventRendered(args: EventRenderedArgs): void {
     console.log(scheduleData.length);
@@ -89,7 +90,7 @@ export class CalenderComponent implements OnInit {
 
   compareCategory(category, dcategory):boolean{
     console.log(category);
-    if(dcategory.includes(category) || category == 'All'){
+    if(dcategory.includes(category) || category == "filterSelectCategory" || category==undefined){
       return true;
     }
     return false;
@@ -103,13 +104,12 @@ export class CalenderComponent implements OnInit {
   }
 
   searchFilterData(form){
-    this.eventSettings = {dataSource: this.data};
+    this.eventSettings = { dataSource: this.data };
     this.newData = <Object[]> [];
     var date = form.value.dateFilter;
     var category = form.value.filterEventType;
     var participant = form.value.participantsFilter;
     var eventList=this.eventSettings.dataSource as Array<Schedule>;
-    console.log(participant);
     var filterDate = new Date(date);
     filterDate.setDate(filterDate.getDate()+1);
     for (let i = 0; i < eventList.length ; i++) {
@@ -129,7 +129,7 @@ export class CalenderComponent implements OnInit {
 
   addNewEvent(form):void {
     var startTime = new Date(form.value.date);
-    var categoryValue = form.value.Category;
+    var categoryValue = form.value.category;
     if(form.value.sTime!=null){
       var sTime = form.value.sTime.split(":");
       startTime.setDate(startTime.getDate()+1);
@@ -145,7 +145,7 @@ export class CalenderComponent implements OnInit {
       endTime.setHours(eTime[0]);
       endTime.setMinutes(eTime[1]);
     }
-    if(categoryValue != undefined || categoryValue.toLowerCase() != "all"){
+    if(categoryValue != undefined || categoryValue.toLowerCase() != "na"){
       colorCode = this.assignColour(categoryValue.toLowerCase());
     }
 
@@ -155,12 +155,17 @@ export class CalenderComponent implements OnInit {
       Subject: form.value.eventName,
       StartTime: startTime,
       EndTime: endTime,
-      Description: 'Category: Basketball <br/> Participants: Saheed, vee',
+      Description: 'Category: ' + categoryValue  + '<br/> Participants: Saheed, vee',
       CategoryColor: colorCode
     };
 
     this.data.push(event);
+    form.reset();
+    var element = document.getElementById("addEventCategory");
+    element.selectedIndex = 0;
     this.refreshCalendar();
+
+
 
   }
   assignColour(categoryName):string{
