@@ -32,9 +32,9 @@ import { Router } from '@angular/router';
 export class CalenderComponent implements OnInit {
   public data: Object[] = <Object[]>extend([], scheduleData, null, true);
   newData: Object[] = <Object[]> [];
-  public selectedDate: Date = new Date(2018, 1, 15);
-  public startHour: string = '08:00';
-  public endHour: string = '18:00';
+  public selectedDate: Date = new Date();
+  public startHour: string = '07:30';
+  public endHour: string = '19:30';
   public eventSettings: EventSettingsModel = { dataSource: scheduleData };
   public currentView: View = 'Week';
   filter = 'Basketball';
@@ -43,10 +43,9 @@ export class CalenderComponent implements OnInit {
   public categories = [{name:'All'},
    {name: 'Basketball', colour: '#1aaa55'},
    {name: 'Soccer', colour:'#f57f17'},
-   {name: 'Damn', colour: '#7fa900'},
-   {name: 'Daniel', colour:'#ea7a57'},
-   {name: 'Kintramurals', colour:'#00bdae'},
-   {name: 'Volleyball', colour:'#357cd2'}
+   {name: 'Fitness', colour: '#7fa900'},
+   {name: 'Kinaxis Training', colour:'#ea7a57'},
+   {name: 'Kinaxis Classes', colour:'#00bdae'}
   ];
   oneventRendered(args: EventRenderedArgs): void {
     console.log(scheduleData.length);
