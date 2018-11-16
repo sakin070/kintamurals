@@ -88,7 +88,7 @@ export class CalenderComponent implements OnInit {
 
   compareCategory(category, dcategory):boolean{
     console.log(category);
-    if(dcategory.includes(category) || category == "filterSelectCategory" || category==undefined){
+    if(dcategory.includes(category) || category == "All" || category==undefined){
       return true;
     }
     return false;
