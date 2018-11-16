@@ -19,18 +19,11 @@ export let scheduleData: Object[] = [
         Description: 'Category: "Kinaxis Classes"'
     }, {
         Id: 27,
-        Subject: 'Peronsal Training - by Appointment',
+        Subject: 'Personal Training - by Appointment',
         StartTime: new Date(2018, 10, 14, 10, 0),
         EndTime: new Date(2018, 10, 14, 11, 30),
         CategoryColor: '#ea7a57',
         Description: 'Category: "Kinaxis Training"'
-    }, {
-        Id: 28,
-        Subject: 'Basketball',
-        StartTime: new Date(2018, 10, 12, 11, 30),
-        EndTime: new Date(2018, 10, 12, 13, 30),
-        CategoryColor: '#1aaa55',
-        Description: 'Category: "Basketball"'
     }, {
         Id: 28,
         Subject: 'Core Strenghtening',
@@ -65,10 +58,11 @@ export let scheduleData: Object[] = [
         StartTime: new Date(2018, 10, 16, 11, 30),
         EndTime: new Date(2018, 10, 16, 13, 30),
         CategoryColor: '#1aaa55',
+        Location: "Richcraft Recreational Complex",
         Description: 'Category: "Basketball"'
     }, {
         Id: 27,
-        Subject: 'Peronsal Training - by Appointment',
+        Subject: 'Personal Training - by Appointment',
         StartTime: new Date(2018, 10, 14, 13, 0),
         EndTime: new Date(2018, 10, 14, 14, 0),
         CategoryColor: '#ea7a57',
