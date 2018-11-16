@@ -170,4 +170,121 @@ export class CalenderComponent implements OnInit {
     return returnColour;
   }
 
+  exportOutlook(form):void {
+    var fileText = '';
+    var eventName;
+    var sDate;
+    var eDate;
+    var location;
+    var description;
+    var fileText = "";
+    var events = this.eventSettings.dataSource as Array<Schedule>;
+    console.log("test\n");
+    console.log(events);
+
+    for(var i = 0, len = events.length; i < len; i++) {
+      if(events[i]['Subject'] === form.value.eventName) {
+        eventName = events[i]['Subject'];
+        sDate = this.formatDate(events[i]['StartTime']);
+        eDate = this.formatDate(events[i]['EndTime']);
+        location = events[i]['Location'];
+        description = events[i]['Description'];
+        
+        fileText = this.getIcsCalendar(eventName, sDate, eDate, location,description);
+        this.saveTextAsFile(fileText, eventName + '.ics');
+
+        return;
+      }
+    }
+    alert("Could not find specified event. Please enter a different one.");
+  }
+
+  private formatDate(date) {
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    //[Day of the week, Month, Day, Year, HH:MM:SS]
+    date = date.toString().split(" ", 5);
+  
+    //year
+    var newDate = date[3];
+
+    //month
+    var monthIndex = (months.findIndex((month)=> {
+      return month == date[1];
+    })) + 1;
+    if (monthIndex < 10) {
+      newDate += "0" + monthIndex;
+    }
+    else {
+      newDate += monthIndex;
+    }
+    
+    //day
+    if (date[2] < 10) {
+      newDate += "0" + date[2];
+    }
+    else {
+      newDate += date[2];
+    }
+
+    //time
+    var time = date[4].replace(/:/gi, "");
+    newDate += "T" + time; 
+
+    //YYYYMMDDTHHMMSS
+    return newDate;
+  }
+
+  private getIcsCalendar(eventName, sDate, eDate, location, description) {
+    return [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'BEGIN:VEVENT',
+      'CLASS:PUBLIC',
+      'DTSTART:' + sDate,
+      'DTEND:' + eDate,
+      'LOCATION:' + location,
+      'SUMMARY:' + eventName,
+      'DESCRIPTION:' + description,
+      'TRANSP:TRANSPARENT',
+      'END:VEVENT',
+      'END:VCALENDAR',
+      'UID:' + this.getUid(),
+      'PRODID:angular-addtocalendar'
+    ].join('\n');
+  }
+
+  private getUid() {
+    return Math.random().toString(36).substr(2);
+  }
+
+  private saveTextAsFile (data, filename){
+
+    if(!data) {
+        console.error('Console.save: No data')
+        return;
+    }
+
+    if(!filename) filename = 'console.json'
+
+    var blob = new Blob([data], {type: 'text/plain'}),
+        e    = document.createEvent('MouseEvents'),
+        a    = document.createElement('a')
+
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveOrOpenBlob(blob, filename);
+    }
+    else{
+      var e = document.createEvent('MouseEvents'),
+          a = document.createElement('a');
+
+      a.download = filename;
+      a.href = window.URL.createObjectURL(blob);
+      a.dataset.downloadurl = ['text/plain', a.download, a.href].join(':');
+      e.initEvent('click');
+      a.dispatchEvent(e);
+    }
+  }
+
+
 }
