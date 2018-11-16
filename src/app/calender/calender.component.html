@@ -1,17 +1,28 @@
 <div class="control-section">
+  <div class="col-lg-12 content-wrapper" id="header">
+    <div class="row" style="align-content:center">
+      <div class="col-md">
+        <div class="display-4" style="text-align:right">Kintramurals</div>
+      </div>
+      <div class="col-md" style="position: relative; align-self: right;">
+        <img src="../../assets/logo.png">
+      </div>
+    </div>
+  </div>
   <div class="col-lg-9 content-wrapper">
-    <ejs-schedule #schedule height='900px' [(selectedDate)]="selectedDate" [eventSettings]="eventSettings" (eventRendered)="oneventRendered($event)">
+    <ejs-schedule #schedule height='auto' [(selectedDate)]="selectedDate" [eventSettings]="eventSettings"
+     (eventRendered)="oneventRendered($event)" [startHour]="startHour" [endHour]="endHour">
       <e-views>
-           <e-view option="Week"></e-view>
-           <e-view option="Month"></e-view>
-       </e-views>
+        <e-view option="Week"></e-view>
+        <e-view option="Month"></e-view>
+      </e-views>
     </ejs-schedule>
   </div>
 
-<div class="col-lg-3 property-section">
-  <div class="row" id="filterRow">
-    <div class="col-md">
-      <!--<form id="filters" action="">
+  <div class="col-lg-3 property-section">
+    <div class="row" id="filterRow">
+      <div class="col-md">
+        <!--<form id="filters" action="">
         <table id="property-table" title="Properties">
           <colgroup style="height: 70pm" margin="10px">
             <col class="tags" style="width: 50%">
@@ -60,7 +71,8 @@
         </table>
         <button class="btn btn-primary">Submit</button>
       </form> -->
-      <h3 class="display-4">Filter Events</h3>
+
+        <h3 class="display-4">Filter Events</h3>
       <form #filterForm="ngForm" (ngSubmit)="searchFilterData(filterForm.form);">
           <input [(ngModel)]="filterForm.date" type="date" class="form-control" name="dateFilter" placeholder="MM/DD/YYYY">
           <select [(ngModel)]="filterForm.category" name="filterEventType" form="event-type-form">
@@ -70,21 +82,21 @@
           <input [(ngModel)]="filterForm.Participants" type="text" class="form-control" name="participantsFilter" placeholder="Select a Participant">
           <button class="btn btn-outline-primary waves-effect btn-lg" >Submit</button>
         </form>
+      </div>
     </div>
-  </div>
-  <div class="row" id="eventRow">
-    <div class="col-md">
+    <div class="row" id="eventRow">
+      <div class="col-md">
         <h3 class="display-4">Add a new event</h3>
         <form #eventForm="ngForm" (ngSubmit)="addNewEvent(eventForm.form);">
           <input [(ngModel)]="eventForm.name"  type="text" class="form-control" placeholder="Event Name" name="eventName" id="eventNameInput">
-          <input [(ngModel)]="eventForm.data" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY" id="eventDateInput" >
-          <input [(ngModel)]="eventForm.Category"  type="text" class="form-control" name="Category" placeholder="Select a Category" id="eventCategoryInput">
-          <input [(ngModel)]="eventForm.startTime"  type="text" class="form-control" name="sTime" placeholder="Start time of event (24h clock)" id="eventSTimeInput">
-          <input [(ngModel)]="eventForm.endTime"  type="text" class="form-control" name="eTime" placeholder="End time of event (24h clock)" id="eventETimeInput">
-          <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
+            <input [(ngModel)]="eventForm.data" type="date" class="form-control" name="date" placeholder="MM/DD/YYYY" id="eventDateInput" >
+            <input [(ngModel)]="eventForm.Category"  type="text" class="form-control" name="Category" placeholder="Select a Category" id="eventCategoryInput">
+            <input [(ngModel)]="eventForm.startTime"  type="text" class="form-control" name="sTime" placeholder="Start time of event (24h clock)" id="eventSTimeInput">
+            <input [(ngModel)]="eventForm.endTime"  type="text" class="form-control" name="eTime" placeholder="End time of event (24h clock)" id="eventETimeInput">
+            <button class="btn btn-outline-primary waves-effect btn-lg" id="submitButton">Submit</button>
         </form>
 
+      </div>
     </div>
   </div>
-</div>
 </div>
