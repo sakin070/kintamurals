@@ -3,7 +3,7 @@ import { extend } from '@syncfusion/ej2-base';
 import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthService,
   AgendaService, View, ResizeService, DragAndDropService, EventRenderedArgs, Schedule} from '@syncfusion/ej2-angular-schedule';
 
-import { scheduleData } from '../datasource';
+import { scheduleData, participants } from '../datasource';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes} from '@angular/router';
@@ -47,6 +47,7 @@ export class CalenderComponent implements OnInit {
    {name: 'Kinaxis Training', colour:'#ea7a57'},
    {name: 'Kinaxis Classes', colour:'#00bdae'}
   ];
+  public participants = participants;
   oneventRendered(args: EventRenderedArgs): void {
     console.log(scheduleData.length);
     console.log(this.eventSettings.dataSource);
@@ -179,10 +180,12 @@ export class CalenderComponent implements OnInit {
     var eDate;
     var location;
     var description;
+    var attendees;
     var fileText = "";
     var events = this.eventSettings.dataSource as Array<Schedule>;
-    console.log("test\n");
-    console.log(events);
+    // console.log("test\n");
+    // console.log(events);
+    // console.log(document.getElementById("participantList").innerText);
 
     for(var i = 0, len = events.length; i < len; i++) {
       if(events[i]['Subject'] === form.value.eventName) {
@@ -192,13 +195,23 @@ export class CalenderComponent implements OnInit {
         location = events[i]['Location'];
         description = events[i]['Description'];
 
-        fileText = this.getIcsCalendar(eventName, sDate, eDate, location,description);
+        attendees = this.getAttendees();
+
+        
+        fileText = this.getIcsCalendar(eventName, sDate, eDate, location,description, attendees);
         this.saveTextAsFile(fileText, eventName + '.ics');
 
         return;
       }
     }
     alert("Could not find specified event. Please enter a different one.");
+  }
+
+  private getAttendees() {
+    var par = document.getElementById("participantList").innerText.split("\n");
+    par.splice(0,1);
+    par.splice(par.length - 1, 1);
+    return par;
   }
 
   private formatDate(date) {
@@ -237,12 +250,20 @@ export class CalenderComponent implements OnInit {
     return newDate;
   }
 
-  private getIcsCalendar(eventName, sDate, eDate, location, description) {
+  private getIcsCalendar(eventName, sDate, eDate, location, description, attendees) {
+
+    var attendance = "";
+
+    for(var i = 0; i < attendees.length; i++) {
+      attendance += 'ATTENDEE; mailto:' + attendees[i] + "\n"
+    }
+
     return [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
       'BEGIN:VEVENT',
       'CLASS:PUBLIC',
+      attendance,
       'DTSTART:' + sDate,
       'DTEND:' + eDate,
       'LOCATION:' + location,
@@ -288,5 +309,16 @@ export class CalenderComponent implements OnInit {
     }
   }
 
+  addParticipants(form):void{
+    if (form.value.participant != undefined) {
+      for(var i=0; i<form.value.participant.length; i++){
+        document.getElementById("participantList").innerHTML += form.value.participant[i] + "<br>";
+      }
+    }
+  }
+
+  clearParticipant():void {
+    document.getElementById("participantList").innerHTML ="List: <br>";
+  }
 
 }
