@@ -1,3 +1,22 @@
+.divForm>h3{
+  font: bolder;
+}
+
+#eventRow{
+  padding-top: 50px;
+}
+ #filterRow{
+  padding-top: 20px;
+}
+
+#header{
+  padding-top:20px;
+  padding-bottom:20px;
+}
+ #header > img {
+  align-content: right;
+}
+
 input, select{
   font-size:16px;
   line-height:1.5;
