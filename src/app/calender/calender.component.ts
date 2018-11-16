@@ -1,7 +1,7 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { extend } from '@syncfusion/ej2-base';
 import { EventSettingsModel, DayService, WeekService, WorkWeekService, MonthService,
-  AgendaService, View, ResizeService, DragAndDropService, EventRenderedArgs } from '@syncfusion/ej2-angular-schedule';
+  AgendaService, View, ResizeService, DragAndDropService, EventRenderedArgs, Schedule} from '@syncfusion/ej2-angular-schedule';
 
 import { scheduleData } from '../datasource';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -29,14 +29,11 @@ import { Router } from '@angular/router';
   bootstrap: [AppComponent]
 })
 
-
 export class CalenderComponent implements OnInit {
   public data: Object[] = <Object[]>extend([], scheduleData, null, true);
   newData: Object[] = <Object[]> [];
   public selectedDate: Date = new Date(2018, 1, 15);
-  public startHour: string = '08:00';
-  public endHour: string = '18:00';
-  public eventSettings: EventSettingsModel = { dataSource: scheduleData };
+  public eventSettings: EventSettingsModel = { dataSource: this.data };
   public currentView: View = 'Week';
   filter = 'Basketball';
   currentFilter = '';
@@ -47,9 +44,11 @@ export class CalenderComponent implements OnInit {
    {name: 'Damn', colour: '#7fa900'},
    {name: 'Daniel', colour:'#ea7a57'},
    {name: 'Kintramurals', colour:'#00bdae'},
-   {name: 'Volleyball', colour:'#357cd2'},
+   {name: 'Volleyball', colour:'#357cd2'}
   ];
   oneventRendered(args: EventRenderedArgs): void {
+    console.log(scheduleData.length);
+    console.log(this.eventSettings.dataSource);
     const categoryColor: string = args.data.CategoryColor as string;
     const category: string = args.data.Description as string;
     if (!args.element || !categoryColor) {
@@ -87,7 +86,8 @@ export class CalenderComponent implements OnInit {
   }
 
   compareCategory(category, dcategory):boolean{
-      if(dcategory.includes(category) || category == 'All'){
+    console.log(category);
+    if(dcategory.includes(category) || category == 'All'){
       return true;
     }
     return false;
@@ -101,19 +101,23 @@ export class CalenderComponent implements OnInit {
   }
 
   searchFilterData(form){
+    this.eventSettings = {dataSource: this.data};
     this.newData = <Object[]> [];
     var date = form.value.dateFilter;
     var category = form.value.filterEventType;
     var participant = form.value.participantsFilter;
+    var eventList=this.eventSettings.dataSource as Array<Schedule>;
+    console.log(participant);
     var filterDate = new Date(date);
     filterDate.setDate(filterDate.getDate()+1);
-    for (let i = 0; i < scheduleData.length ; i++) {
-      if(this.compareDate(filterDate, scheduleData[i]["StartTime"]) && this.compareCategory(category, scheduleData[i]["Description"])
-      && this.compareParticipants(participant, scheduleData[i]["Description"])){
+    for (let i = 0; i < eventList.length ; i++) {
+      if(this.compareDate(filterDate, eventList[i]['StartTime']) && this.compareCategory(category, eventList[i]['Description'])
+      && this.compareParticipants(participant, eventList[i]['Description'])){
         this.newData.push(this.data[i]);
       }
     }
     this.eventSettings = { dataSource: this.newData };
+
   }
 
   constructor() { }
@@ -122,7 +126,6 @@ export class CalenderComponent implements OnInit {
   }
 
   addNewEvent(form):void {
-    
     var startTime = new Date(form.value.date);
     var categoryValue = form.value.Category;
     if(form.value.sTime!=null){
@@ -151,10 +154,12 @@ export class CalenderComponent implements OnInit {
       StartTime: startTime,
       EndTime: endTime,
       Description: 'Category: Basketball <br/> Participants: Saheed, vee',
-      CategoryColor: colorCode;
+      CategoryColor: colorCode
     };
+
     this.data.push(event);
     this.refreshCalendar();
+
   }
   assignColour(categoryName):string{
     var categoryPos = (this.categories).map(function(x) {return x.name.toLowerCase() }).indexOf(categoryName);
@@ -163,5 +168,4 @@ export class CalenderComponent implements OnInit {
     return returnColour;
   }
 
-}
 }
